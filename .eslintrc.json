@@ -1,0 +1,33 @@
+{
+  "extends": "google",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "arrow-parens": "off",
+    "indent": "off",
+    "linebreak-style": "off",
+    "max-len": "off",
+    "no-multiple-empty-lines": "off",
+    "no-trailing-spaces": "off",
+    "object-curly-spacing": "off",
+    "padded-blocks": "off",
+    "require-jsdoc": "off",
+    "valid-jsdoc": "warn"
+  }
+}

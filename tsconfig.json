@@ -1,21 +1,24 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "target": "es2015",
-    "module": "esnext",
-    "types": ["node"],
-    "strict": true,
     "declaration": true,
-    "noImplicitAny": false,
-    "esModuleInterop": true,
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "target": "es2015",
+    "types": [
+      "node",
+      "mocha"
+    ]
   },
   "include": [
-    "src",
-    "src/**/*.d.ts"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",
