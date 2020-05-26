@@ -1,0 +1,42 @@
+{
+  "name": "@shedevro/web-utils",
+  "version": "0.0.1",
+  "description": "Web utils for better coding",
+  "keywords": [
+    "web",
+    "utils",
+    "assert",
+    "javascript",
+    "typescript"
+  ],
+  "author": "Shedevro <worldschaos@gmail.com>",
+  "homepage": "https://github.com/Shedevro/web-utils#readme",
+  "license": "MIT",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shedevro/web-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Shedevro/web-utils/issues"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prebuild": "rimraf ./dist",
+    "publish:version": "git push --tags && npm publish",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.3"
+  }
+}
