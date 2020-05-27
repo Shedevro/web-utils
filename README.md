@@ -1,22 +1,43 @@
 # Web utils (WIP)
-Utils for better coding
+Provides assertion utility for better coding
+
 
 ## Installation 
 ```sh
 npm install @shedevro/web-utils --save
 ```
 
+
 ## Usage
-### Javascript
-```javascript
-const { Assert } = require('@shedevro/web-utils');
-Assert.string(...);
+Library uses typescript assert types `someFuntion(value): asserts value is string` and so on.
+```typescript
+import { Assert } from '@shedevro/web-utils';
+
+// some of functions
+Assert.string(val);
+Assert.number(val);
+Assert.booleanval);
+Assert.array(val);
+Assert.instance(val, SomeInstanceClass);
+...
+```
+##### For example
+```typescript
+const stringValue = 'some string';
+
+Assert.string(stringValue); // not throws error
+const uppercasedValue = stringValue.toUppercase();
+
+// OR
+const mayBeStringValue = 123;
+Assert.string(mayBeStringValue); // throws Assertion error
+const uppercasedValue = mayBeStringValue.toUppercase();
 ...
 ```
 
-### TypeScript
-```typescript
-import { Assert } from '@shedevro/web-utils';
-Assert.string(...);
-...
-```
+
+## Build
+`npm run build`
+
+## Test
+`npm run test`

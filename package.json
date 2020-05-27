@@ -1,6 +1,6 @@
 {
   "name": "@shedevro/web-utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Web utils for better coding",
   "keywords": [
     "web",
@@ -28,12 +28,10 @@
     "url": "https://github.com/Shedevro/web-utils/issues"
   },
   "scripts": {
-    "build": "npm run lint && tsc",
+    "build": "tsc",
+    "prebuild": "rimraf ./dist && npm run lint",
     "lint": "eslint",
-    "test": "jest",
-    "prebuild": "rimraf ./dist",
-    "publish:version": "git push --tags && npm publish",
-    "prepublishOnly": "npm run build"
+    "test": "jest"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
