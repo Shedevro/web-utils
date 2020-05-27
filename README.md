@@ -1,3 +1,7 @@
+[![Travis (.org)](https://img.shields.io/travis/shedevro/web-utils?style=flat-square)](https://travis-ci.org/Shedevro/web-utils)
+[![Coveralls github](https://img.shields.io/coveralls/github/shedevro/web-utils?style=flat-square)](https://coveralls.io/github/Shedevro/web-utils)
+[![npm](https://img.shields.io/npm/dm/@shedevro/web-utils?color=orange&style=flat-square)](https://www.npmjs.com/package/@shedevro/web-utils)
+
 # Web utils (WIP)
 Provides assertion utility for better coding
 
