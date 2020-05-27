@@ -13,7 +13,7 @@ export class WebUtilsAssertionError extends AssertionError {
     stackStartFn?: Function,
     customMessageApplied?: boolean,
   }) {
-    super(options);
+    super(options ?? {});
     this.customMessageApplied = options?.customMessageApplied ?? false;
   }
 }

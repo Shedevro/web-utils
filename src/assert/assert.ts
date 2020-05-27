@@ -1,12 +1,12 @@
-import {InstanceClass} from '../common/types/types';
-import {WebUtilsAssertionError} from './assertion.error';
+import {AssertionHelper} from './assertion.helper';
+
 
 /**
  * String
  */
 export function string(value): asserts value is string {
   if (!isString(value)) {
-    throwError(expectedMsg('a string', '{1}'), valueToString(value));
+    AssertionHelper.throwError(AssertionHelper.getExpectedMsg('a string', '{1}'), AssertionHelper.valueToString(value));
   }
 }
 
@@ -18,7 +18,7 @@ export function nullOrString(value): asserts value is string {
 
 export function notEmptyString(value, message?: string): asserts value is string {
   if (!(isString(value) ? value.trim() : null)) {
-    throwError(expectedMsg('non-empty', '{1}'), valueToString(value), message);
+    AssertionHelper.throwError(AssertionHelper.getExpectedMsg('non-empty', '{1}'), AssertionHelper.valueToString(value), message);
   }
 }
 
@@ -28,7 +28,7 @@ export function notEmptyString(value, message?: string): asserts value is string
  */
 export function number(value): asserts value is number {
   if (!isNumber(value)) {
-    throwError(expectedMsg('a number', '{1}'), valueToString(value));
+    AssertionHelper.throwError(AssertionHelper.getExpectedMsg('a number', '{1}'), AssertionHelper.valueToString(value));
   }
 }
 
@@ -38,7 +38,7 @@ export function number(value): asserts value is number {
  */
 export function boolean(value): asserts value is boolean {
   if (!isBoolean(value)) {
-    throwError(expectedMsg('a boolean', '{1}'), valueToString(value));
+    AssertionHelper.throwError(AssertionHelper.getExpectedMsg('a boolean', '{1}'), AssertionHelper.valueToString(value));
   }
 }
 
@@ -49,7 +49,7 @@ export function boolean(value): asserts value is boolean {
  */
 export function object(value): asserts value is object {
   if (!isObject(value)) {
-    throwError(expectedMsg('an object', '{1}'), valueToString(value));
+    AssertionHelper.throwError(AssertionHelper.getExpectedMsg('an object', '{1}'), AssertionHelper.valueToString(value));
   }
 }
 
@@ -60,7 +60,7 @@ export function object(value): asserts value is object {
  */
 export function array<T extends any[]>(value: T | any): asserts value is T {
   if (!isArray(value)) {
-    throwError(expectedMsg('an array', '{1}'), valueToString(value));
+    AssertionHelper.throwError(AssertionHelper.getExpectedMsg('an array', '{1}'), AssertionHelper.valueToString(value));
   }
 }
 
@@ -71,9 +71,12 @@ export function array<T extends any[]>(value: T | any): asserts value is T {
  */
 export function instanceOf<T extends InstanceClass>(value, instanceClass: T): asserts value is InstanceType<T> {
   if (!(value instanceof instanceClass)) {
-    throwError(
-      expectedMsg('an instance of {1}', '{2}'),
-      [valueToString(instanceClass), valueToString(typeOf(value) === 'object' ? value.name : value)],
+    AssertionHelper.throwError(
+      AssertionHelper.getExpectedMsg('an instance of {1}', '{2}'),
+      [
+        AssertionHelper.valueToString(instanceClass),
+        AssertionHelper.valueToString(AssertionHelper.typeOf(value) === 'object' ? value.name : value),
+      ],
     );
   }
 }
@@ -88,9 +91,9 @@ export function allInstancesOf<T extends InstanceClass>(value: T[] | any, instan
   array(value);
 
   if (!value.every(obj => obj instanceof instanceClass)) {
-    throwError(
+    AssertionHelper.throwError(
       'expected all elements to be an instance of {1}',
-      valueToString(instanceClass),
+      AssertionHelper.valueToString(instanceClass),
     );
   }
 }
@@ -102,15 +105,15 @@ export function allInstancesOf<T extends InstanceClass>(value: T[] | any, instan
  */
 export function defined<T>(value: T, message?: string): asserts value is NonNullable<T> {
   if (!isDefined(value)) {
-    throwError(expectedMsg('defined'), null, message);
+    AssertionHelper.throwError(AssertionHelper.getExpectedMsg('defined'), null, message);
   }
 }
 
 export function equal(value, toEqual, message?: string) {
   if (value !== toEqual) {
-    throwError(
+    AssertionHelper.throwError(
       'expected {1} to equal {2}',
-      [valueToString(value), valueToString(toEqual)],
+      [AssertionHelper.valueToString(value), AssertionHelper.valueToString(toEqual)],
       message,
     );
   }
@@ -148,52 +151,3 @@ export function isArray(value): boolean {
 export function isDefined(value) {
   return value !== null && value !== undefined;
 }
-
-
-
-function typeOf(value) {
-  switch (true) {
-    case isObject(value):
-      return 'object';
-    case isArray(value):
-      return 'array';
-    default:
-      return typeof value;
-  }
-}
-
-function valueToString(value): string {
-  switch (typeOf(value)) {
-    case 'array':
-      return `[${value.map(v => valueToString(v)).join(', ')}]`;
-    case 'string':
-      return `"${value}"`;
-    case 'function':
-      return `Function.${value.name}`;
-    default:
-      return String(value);
-  }
-}
-
-
-
-function throwError(
-  originalMessage: string,
-  params?: any,
-  customMessage?: string,
-) {
-  params = isArray(params) ? params : [params];
-  const message = (customMessage ?? originalMessage)?.replace(
-    /{\d+}/g,
-    propPos => params[Number(propPos?.replace(/\D/g, '')) - 1] || '',
-  );
-
-  throw new WebUtilsAssertionError({ message, customMessageApplied: !!customMessage });
-}
-
-
-
-const expectedMsg = (expected: string, actual?: string) => {
-  const gotLine = actual ? `. Got: ${actual}` : '';
-  return `expected value to be ${expected}${gotLine}`;
-};
