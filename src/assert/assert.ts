@@ -1,3 +1,4 @@
+import {InstanceClass} from '../common/types/types';
 import {AssertionHelper} from './assertion.helper';
 
 
