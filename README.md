@@ -1,5 +1,5 @@
 [![Travis (.org)](https://img.shields.io/travis/shedevro/web-utils?style=flat-square)](https://travis-ci.org/Shedevro/web-utils)
-[![Coveralls github](https://img.shields.io/coveralls/github/shedevro/web-utils?style=flat-square)](https://coveralls.io/github/Shedevro/web-utils)
+[![Coveralls github](https://img.shields.io/coveralls/github/Shedevro/web-utils?style=flat-square)](https://coveralls.io/github/Shedevro/web-utils)
 [![npm](https://img.shields.io/npm/dm/@shedevro/web-utils?color=orange&style=flat-square)](https://www.npmjs.com/package/@shedevro/web-utils)
 
 # Web utils (WIP)
@@ -13,7 +13,7 @@ npm install @shedevro/web-utils --save
 
 
 ## Usage
-Library uses typescript assert types `someFuntion(value): asserts value is string` and so on.
+Library uses typescript assert types like `someFuntion(value): asserts value is string` etc.
 ```typescript
 import { Assert } from '@shedevro/web-utils';
 
