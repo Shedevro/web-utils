@@ -16,7 +16,7 @@ import { Assert } from '@shedevro/web-utils';
 // some of functions
 Assert.string(val);
 Assert.number(val);
-Assert.booleanval);
+Assert.boolean(val);
 Assert.array(val);
 Assert.instance(val, SomeInstanceClass);
 ...

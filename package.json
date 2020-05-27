@@ -32,7 +32,7 @@
     "prebuild": "rimraf ./dist && npm run lint",
     "lint": "eslint",
     "test": "jest",
-    "git:push": "npm run test && git push --follow-tags origin"
+    "git:push": "git push --follow-tags origin"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
