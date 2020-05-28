@@ -34,7 +34,7 @@ const uppercasedValue = stringValue.toUppercase();
 
 // OR
 const mayBeStringValue = 123;
-Assert.string(mayBeStringValue); // throws Assertion error
+Assert.string(mayBeStringValue); // throws WebUtilsAssertionError (Error)
 const uppercasedValue = mayBeStringValue.toUppercase();
 ...
 ```
@@ -44,4 +44,4 @@ const uppercasedValue = mayBeStringValue.toUppercase();
 `npm run build`
 
 ## Test
-`npm run test`
+`npm test`
