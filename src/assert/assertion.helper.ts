@@ -40,7 +40,7 @@ export abstract class AssertionHelper {
       propPos => params[Number(propPos.replace(/\D/g, '')) - 1] || '',
     );
 
-    throw new WebUtilsAssertionError({ message, customMessageApplied: !!customMessage });
+    throw new WebUtilsAssertionError(message, !!customMessage);
   }
 
 

@@ -1,19 +1,11 @@
-import {AssertionError} from 'assert';
+import {AbstractAppError} from '../common/classes/abstract-app-error/abstract-app-error';
 
-export class WebUtilsAssertionError extends AssertionError {
+export class WebUtilsAssertionError extends AbstractAppError {
 
-  customMessageApplied: boolean;
-
-
-  constructor(options?: {
-    message?: string;
-    actual?: any;
-    expected?: any;
-    operator?: string;
-    stackStartFn?: Function,
-    customMessageApplied?: boolean,
-  }) {
-    super(options ?? {});
-    this.customMessageApplied = options?.customMessageApplied ?? false;
+  constructor(
+    public message: string,
+    public customMessageApplied?: boolean,
+  ) {
+    super(message);
   }
 }
