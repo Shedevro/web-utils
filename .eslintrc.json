@@ -26,7 +26,9 @@
     "no-invalid-this": "off",
     "no-multiple-empty-lines": "off",
     "no-trailing-spaces": "off",
+    "no-unused-vars": "off",
     "object-curly-spacing": "off",
+    "operator-linebreak": "off",
     "padded-blocks": "off",
     "require-jsdoc": "off",
     "valid-jsdoc": "warn"

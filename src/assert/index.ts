@@ -1,4 +1,2 @@
-import * as Assert from './assert';
-
-export { Assert };
+export { Assert } from './assert';
 export { WebUtilsAssertionError} from './assertion.error';
