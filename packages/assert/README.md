@@ -20,7 +20,9 @@ npm i @shedevro/assert --save
 
 
 ## Usage
-**First you should import the library**
+
+First you should import the library
+
 ```typescript
 import { Assert } from '@shedevro/assert';
 ```
@@ -28,9 +30,10 @@ import { Assert } from '@shedevro/assert';
 ***
 
 ### **Custom error messages**
+
 Each function can be customized with you own error message.
 
-Error message supports params injecting of assert functions like input or expected values etc.
+Error message supports params injecting of assert functions arguments like input or expected values etc.
 
 Most often the order of params matches the function arguments order.
 
@@ -38,6 +41,7 @@ For example:
  ```typescript
 const someValue = 3;
 Assert.greaterThan(someValue, 10, 'This value should be greater than {2}, but got {1}');
+// throw error with message 'This value should be greater than 10, but got 3';
 ```
 
 ***
@@ -60,14 +64,15 @@ const uppercasedValue = mayBeStringValue.toUppercase(); // still can call toUppe
 
 ### **Functions**
 
-Than you can choice needed function.
+Then you can choice needed function.
 
 
-##### **Operators**
-Half of the functions can be chained with operator or even combined each other.
+#### **Operators**
 
 * `nullOr` – to run assertion than value is defined
 * `not` – inverses assert action
+
+Half of the functions can be chained with operator or even combined each other.
 
 For example:
 ```typescript
@@ -75,8 +80,6 @@ Assert.nullOr.boolean(value);
 Assert.nullOr.not.emptyString(value);
 Assert.not.defined(value);
 ```
-This not throw error
-
 
 
 ### String Assertions
@@ -149,7 +152,7 @@ Method                                                                          
 `throws(expression: () => any, errorClass?: InstanceClass, customMessage?: string)`  | Ensures that expression throws some error
 
 
-### Type Ensuress
+### Type Checks
 ##### Returns boolean.
 
 Method                                      | Description
