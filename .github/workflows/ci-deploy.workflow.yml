@@ -13,10 +13,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Configure CI git user
+      - name: Configure CI git
         run: |
-          git config --global user.name 'ci-worker'
+          git config --global user.name $USER_NAME
           git config --global user.email 'worldschaos@gmail.com'
+          git remote rm origin
+          git remote add origin "https://$USER_NAME:$GITHUB_TOKEN@github.com:Shedevro/web-utils.git"
+          git fetch
+        env:
+          USER_NAME: 'ci-worker'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install node
         uses: actions/setup-node@v1
@@ -53,6 +59,5 @@ jobs:
       - name: Publish packages
         run: npx lerna publish
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
