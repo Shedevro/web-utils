@@ -6,3 +6,5 @@ node_modules/
 .vscode/
 *.log
 tsconfig.tsbuildinfo
+sandbox.ts
+tsconfig.ts-node.json

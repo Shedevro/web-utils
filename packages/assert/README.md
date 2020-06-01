@@ -10,7 +10,7 @@ Provides assertion utility for better coding
 
 ## Installation 
 ```sh
-npm install @shedevro/web-utils --save
+npm i @shedevro/assert --save
 ```
 
 
