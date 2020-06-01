@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/shedevro/web-utils?label=GitHub%20%E2%98%85&style=flat-square)](https://github.com/Shedevro/web-utils)
 
 
-# Web utils root
+# Web utils
 Web utilities for better coding
 
 
