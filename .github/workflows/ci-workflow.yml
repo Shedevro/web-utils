@@ -12,6 +12,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+
       - name: Cache node modules
         uses: actions/cache@v2
         env:
@@ -32,8 +37,8 @@ jobs:
       - name: Run tests
         run: npx jest --coverageReporters=lcov
 
-      - name: Upload coverage report to Coveralls
-        run: cat ./coverage/lcov.info | coveralls
+#      - name: Upload coverage report to Coveralls
+#        run: cat ./coverage/lcov.info | coveralls
 
       - name: Authenticate with Registry
         run: |
@@ -47,10 +52,6 @@ jobs:
 
       - name: Build packages
         run: lerna run build
-
-      #      - uses: actions/setup-node@v1
-      #        with:
-      #          node-version: 14
 
       - name: Publish packages
         run: lerna publish
