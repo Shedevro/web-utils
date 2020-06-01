@@ -8,6 +8,11 @@
 Web utilities for better coding
 
 
+# Packages list
+
+* [Assert](https://github.com/Shedevro/web-utils/tree/master/packages/assert) – assertion library for better and safe coding
+
+
 # Contribute
 If you have ideas on how to improve any of libraries, you are welcome!
 
