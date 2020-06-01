@@ -30,7 +30,7 @@ jobs:
           npm i coveralls --save-dev
 
       - name: Run tests
-        run: npx jest --coverageReporters=text,lcov
+        run: npx jest --coverageReporters=lcov
 
       - name: Upload coverage report to Coveralls
         run: cat ./coverage/lcov.info | coveralls
