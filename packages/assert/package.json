@@ -1,6 +1,6 @@
 {
   "name": "@shedevro/assert",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Assertion library for better codding",
   "keywords": [
     "web",
@@ -36,6 +36,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@shedevro/core": "^0.0.2"
+    "@shedevro/core": "^0.0.3"
   }
 }
