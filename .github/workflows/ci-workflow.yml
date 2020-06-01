@@ -52,10 +52,10 @@ jobs:
 #          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build packages
-        run: lerna run build
+        run: npx lerna run build
 
       - name: Publish packages
-        run: lerna publish
+        run: npx lerna publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
