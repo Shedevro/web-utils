@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.5 (2020-06-01)
+
+
+### Bug Fixes
+
+* **ci:** deploy workflow ([d07a2cf](https://github.com/Shedevro/web-utils/commit/d07a2cfd596c1d0da14cc550921e0dde97fe8c59))
+
+
+
+
+
 ## 0.0.4 (2020-06-01)
 
 **Note:** Version bump only for package @shedevro/core
