@@ -1,9 +1,9 @@
 {
   "name": "@shedevro/core",
   "version": "0.0.2",
-  "description": "Webutils core module",
+  "description": "Web utils core module",
   "author": "Shedevro <worldschaos@gmail.com>",
-  "homepage": "https://github.com/Shedevro/web-utils/tree/packages/core#readme",
+  "homepage": "https://github.com/Shedevro/web-utils/tree/master/packages/core#readme",
   "license": "MIT",
   "main": "src/",
   "directories": {
@@ -23,7 +23,7 @@
     "url": "https://github.com/Shedevro/web-utils/issues"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc",
     "prebuild": "rimraf ./dist && npm run lint",
     "lint": "eslint"
   }

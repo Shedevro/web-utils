@@ -10,7 +10,7 @@
     "ts"
   ],
   "author": "Shedevro <worldschaos@gmail.com>",
-  "homepage": "https://github.com/Shedevro/web-utils/tree/packages/assert#readme",
+  "homepage": "https://github.com/Shedevro/web-utils/tree/master/packages/assert#readme",
   "license": "MIT",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,7 +31,7 @@
     "url": "https://github.com/Shedevro/web-utils/issues"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc",
     "prebuild": "rimraf ./dist && npm run lint",
     "lint": "eslint"
   },
