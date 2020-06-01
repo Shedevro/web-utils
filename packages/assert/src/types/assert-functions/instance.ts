@@ -19,10 +19,10 @@ export type InstanceOfAny = {
 
 export type AllAreInstanceOf = {
   allAreInstanceOf<T extends InstanceClass>(
-    value: T[] | any,
+    array: T[] | any,
     instanceClass: T,
     customMessage?: string,
-  ): asserts value is InstanceType<T>[];
+  ): asserts array is InstanceType<T>[];
 }
 
 
