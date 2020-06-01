@@ -7,19 +7,36 @@ export type OneOf = {
 }
 
 export type ArrayLength = {
-  arrayLength<T extends any[]>(array: T | any, number: number, customMessage?: string): asserts array is T;
+  arrayLength<T extends any[]>(
+    array: T | any,
+    number: number,
+    customMessage?: string,
+  ): asserts array is T;
 }
 
 export type ArrayMinLength = {
-  arrayMinLength<T extends any[]>(array: T | any, limit: number, customMessage?: string): asserts array is T;
+  arrayMinLength<T extends any[]>(
+    array: T | any,
+    limit: number,
+    customMessage?: string,
+  ): asserts array is T;
 }
 
 export type ArrayMaxLength = {
-  arrayMaxLength<T extends any[]>(array: T | any, limit: number, customMessage?: string): asserts array is T;
+  arrayMaxLength<T extends any[]>(
+    array: T | any,
+    limit: number,
+    customMessage?: string,
+  ): asserts array is T;
 }
 
 export type ArrayLengthBetween = {
-  arrayLengthBetween<T extends any[]>(array: T | any, min: number, max: number, customMessage?: string): asserts array is T;
+  arrayLengthBetween<T extends any[]>(
+    array: T | any,
+    min: number,
+    max: number,
+    customMessage?: string,
+  ): asserts array is T;
 }
 
 
