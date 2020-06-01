@@ -1,38 +1,21 @@
 {
-  "name": "@shedevro/web-utils",
-  "version": "0.0.10",
-  "description": "Web utils for better coding",
-  "keywords": [
-    "web",
-    "utils",
-    "assert",
-    "javascript",
-    "typescript"
-  ],
-  "author": "Shedevro <worldschaos@gmail.com>",
-  "homepage": "https://github.com/Shedevro/web-utils#readme",
-  "license": "MIT",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
+  "name": "root",
+  "version": "0.0.0",
+  "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Shedevro/web-utils.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Shedevro/web-utils/issues"
+    "url": "https://github.com/Shedevro/web-utils.git"
   },
   "scripts": {
-    "build": "tsc",
-    "prebuild": "rimraf ./dist && npm run lint",
+    "build": "lerna run build",
+    "prebuild": "lerna run rimraf ./dist && lerna run lint",
+    "postinstall": "lerna bootstrap",
+    "start": "lerna run start --stream",
     "lint": "eslint",
-    "test": "jest",
-    "git:push": "git push --follow-tags origin"
+    "test": "jest"
+  },
+  "dependencies": {
+    "typescript": "^3.9.3"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
@@ -42,9 +25,9 @@
     "eslint": "^7.1.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^26.0.1",
+    "lerna": "^3.21.0",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.0.0",
-    "ts-node": "^8.10.2",
-    "typescript": "^3.9.3"
+    "ts-node": "^8.10.2"
   }
 }

@@ -1,4 +1,4 @@
-import type {InstanceClass} from '../../../common/types/types';
+import type {InstanceClass} from '@shedevro/core';
 
 
 export type InstanceOf = {

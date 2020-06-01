@@ -1,4 +1,4 @@
-import {AbstractAppError} from '../common/classes/abstract-app-error/abstract-app-error';
+import {AbstractAppError} from '@shedevro/core/src/classes/abstract-app-error';
 
 export class WebUtilsAssertionError extends AbstractAppError {
 

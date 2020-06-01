@@ -1,4 +1,4 @@
-import {InstanceClass} from '../../../common/types/types';
+import {InstanceClass} from '@shedevro/core';
 
 export type Defined = {
   defined<T>(value: T, customMessage?: string): asserts value is NonNullable<T>;

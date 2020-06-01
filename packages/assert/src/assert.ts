@@ -1,6 +1,6 @@
+import type {InstanceClass} from '@shedevro/core';
 import {WebUtilsAssertionError} from './assertion.error';
 import {MsgBuilder} from './assertion-message-builder';
-import type {InstanceClass} from '../common/types/types';
 import type {AssertOpts, AssertType} from './types/common';
 import type {AssertOperatorsConfig} from './types/operators';
 
@@ -605,12 +605,12 @@ class AssertClass implements AssertType {
 
   private typeOf(value) {
     switch (true) {
-      case this.isObject(value):
-        return 'object';
-      case this.isArray(value):
-        return 'array';
       case this.isUndefined(value):
         return 'undefined';
+      case this.isArray(value):
+        return 'array';
+      case this.isObject(value):
+        return 'object';
       default:
         return typeof value;
     }
@@ -637,7 +637,7 @@ class AssertClass implements AssertType {
   private throwError(...params: any[]) {
     let message = this.opts.customMessage ?? this.opts.message;
     if (!message) {
-      throw new Error('message should be set');
+      throw new Error('assert message should be set');
     }
     params = params ?? [];
     message = message.replace(

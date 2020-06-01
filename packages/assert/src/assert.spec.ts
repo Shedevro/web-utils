@@ -1,5 +1,4 @@
-import {Assert} from './assert';
-import {WebUtilsAssertionError} from './assertion.error';
+import {Assert, WebUtilsAssertionError} from './';
 
 
 describe('Assert: string', () => {

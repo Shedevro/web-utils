@@ -1,0 +1,31 @@
+{
+  "name": "@shedevro/core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Webutils core module",
+  "author": "Shedevro <worldschaos@gmail.com>",
+  "homepage": "https://github.com/Shedevro/web-utils/tree/packages/core#readme",
+  "license": "MIT",
+  "main": "src/",
+  "directories": {
+    "lib": "dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shedevro/web-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Shedevro/web-utils/issues"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prebuild": "rimraf ./dist && npm run lint",
+    "lint": "eslint"
+  }
+}

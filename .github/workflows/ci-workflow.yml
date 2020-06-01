@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branges: [master]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Cache node modules
+          uses: actions/cache@v2
+          env:
+            cache-name: cache-node-modules
+          with:
+            path: ~/.npm
+            key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-build-${{ env.cache-name }}-
+              ${{ runner.os }}-build-
+              ${{ runner.os }}-
+
+      - name: Install dependencies
+        run: |
+          npm i
+          npm i coveralls --save-dev
+
+      - name: Run tests
+        run: npx jest --coverageReporters=text,lcov
+
+      - name: Upload coverage report to Coveralls
+        run: cat ./coverage/lcov.info | coveralls
+
+      - name: Authenticate with Registry
+        run: |
+          npm logout
+          echo "@shedevro:registry=http://registry.npmjs.org/" > .npmrc
+          echo "registry=http://registry.npmjs.org/" >> .npmrc
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
+          npm whoami
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Build packages
+        run: lerna run build
+
+      #      - uses: actions/setup-node@v1
+      #        with:
+      #          node-version: 14
+
+      - name: Publish packages
+        run: lerna publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

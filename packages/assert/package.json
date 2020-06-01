@@ -1,0 +1,41 @@
+{
+  "name": "@shedevro/assert",
+  "version": "0.0.0",
+  "description": "Assertion library for better codding",
+  "keywords": [
+    "web",
+    "utils",
+    "assert",
+    "typescript",
+    "ts"
+  ],
+  "author": "Shedevro <worldschaos@gmail.com>",
+  "homepage": "https://github.com/Shedevro/web-utils/tree/packages/assert#readme",
+  "license": "MIT",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "lib": "dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shedevro/web-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Shedevro/web-utils/issues"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prebuild": "rimraf ./dist && npm run lint",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@shedevro/core": "^0.0.0"
+  }
+}
