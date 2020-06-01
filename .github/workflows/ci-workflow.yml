@@ -16,6 +16,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Cache node modules
         uses: actions/cache@v2
@@ -40,15 +41,15 @@ jobs:
 #      - name: Upload coverage report to Coveralls
 #        run: cat ./coverage/lcov.info | coveralls
 
-      - name: Authenticate with Registry
-        run: |
-          npm logout
-          echo "@shedevro:registry=http://registry.npmjs.org/" > .npmrc
-          echo "registry=http://registry.npmjs.org/" >> .npmrc
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
-          npm whoami
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+#      - name: Authenticate with Registry
+#        run: |
+#          npm logout
+#          echo "@shedevro:registry=http://registry.npmjs.org/" > .npmrc
+#          echo "registry=http://registry.npmjs.org/" >> .npmrc
+#          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
+#          npm whoami
+#        env:
+#          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build packages
         run: lerna run build
