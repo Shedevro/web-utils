@@ -455,18 +455,18 @@ class AssertClass implements AssertType {
 
 
   allAreInstanceOf<T extends InstanceClass>(
-    value: T[] | any,
+    array: T[] | any,
     instanceClass: T,
     customMessage?: string,
-  ): asserts value is InstanceType<T>[] {
-    if (this.checkNullOr(value)) {
+  ): asserts array is InstanceType<T>[] {
+    if (this.checkNullOr(array)) {
       return;
     }
 
     try {
-      this.array(value);
+      this.array(array);
 
-      if (value.every(obj => obj instanceof instanceClass)) {
+      if (array.every(obj => obj instanceof instanceClass)) {
         return;
       }
     } catch (e) {}
@@ -475,13 +475,13 @@ class AssertClass implements AssertType {
     const message = MsgBuilder.expected('all elements to be an instance of {2}', '{1}');
     this.setMessage({ message, customMessage });
 
-    this.throwError(value, instanceClass);
+    this.throwError(array, instanceClass);
   }
 
 
 
   /**
-   * Others
+   * Other
    */
   defined<T>(value: T, customMessage?: string): asserts value is NonNullable<T> {
     const prefix = this.opts.operators?.not ? 'defined' : 'undefined';
