@@ -18,7 +18,7 @@ If you have ideas on how to improve any of libraries, you are welcome!
 
 1. Start with cloning the repo
 2. Make your own branch from `master`
-3. Run `npm i` to set up workspace
+3. Run `npm i` and `npm run build` to set up workspaces
 4. Make some changes with code
 5. Cover your code with tests and run `npm test` to test it
 6. Finally make PR to available release branch `release/*`

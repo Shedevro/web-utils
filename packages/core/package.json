@@ -6,6 +6,8 @@
   "homepage": "https://github.com/Shedevro/web-utils/tree/master/packages/core#readme",
   "license": "MIT",
   "main": "src/",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "directories": {
     "lib": "dist"
   },
