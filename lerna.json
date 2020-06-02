@@ -5,7 +5,8 @@
   ],
   "ignoreChanges": [
     "**/*.spec.ts",
-    "**/*.md"
+    "**/*.md",
+    "package-lock.json"
   ],
   "command": {
     "bootstrap": {
