@@ -1,6 +1,5 @@
 {
   "name": "root",
-  "version": "0.0.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -9,7 +8,6 @@
   "scripts": {
     "start": "lerna run start --stream",
     "build": "lerna run build",
-    "prebuild": "lerna run rimraf ./dist && lerna run lint",
     "postinstall": "lerna bootstrap",
     "lint": "lerna run lint",
     "test": "jest"
