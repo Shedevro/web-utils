@@ -8,7 +8,9 @@
   "scripts": {
     "start": "lerna run start --stream",
     "build": "lerna run build",
-    "postinstall": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap",
+    "postinstall": "npm run bootstrap",
+    "prebuild": "npm run bootstrap",
     "lint": "lerna run lint",
     "test": "jest"
   },
