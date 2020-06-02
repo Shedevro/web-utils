@@ -45,6 +45,9 @@ jobs:
       - name: Install dependencies
         run: npm i
 
+      - name: Build packages
+        run: npx lerna run build
+
       - name: Run tests
         run: npx jest --coverageReporters=lcov
 
@@ -52,9 +55,6 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build packages
-        run: npx lerna run build
 
       - name: Publish packages
         run: npx lerna publish
