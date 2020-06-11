@@ -8,8 +8,12 @@
 # Assert
 Library provides assertion utility for better and safe coding.
 
-Some features:
-* Assertion typing from typescript (`someAssert(value): asserts value is string` etc.)
+**Features:**
+* Right assertion return types:
+
+  `Assert.someFn(value): asserts value is string` or `Assert.is.someFn(value): value is string` etc. 
+ 
+* Assert functions can be chained with [operators](#user-content-operators) (`is`, `all`, `nullOr`, `not`)
 * throws WebUtilsAssertionError (extends from Error). Provides right stacktrace (especialy helpfull then coding with Angular to see links to .ts files)
 
 
@@ -44,21 +48,6 @@ Assert.greaterThan(someValue, 10, 'This value should be greater than {2}, but go
 // throw error with message 'This value should be greater than 10, but got 3';
 ```
 
-***
-
-### **Example**
-```typescript
-const stringValue: any = 'some string';
-
-Assert.string(stringValue); // not throws error
-const uppercasedValue = stringValue.toUppercase();
-
-// OR
-const mayBeStringValue: any = 123;
-Assert.string(mayBeStringValue); // will throw 'expected value to be a string. Got: 123'
-const uppercasedValue = mayBeStringValue.toUppercase(); // still can call toUppercase()  
-...
-```
 
 ***
 
@@ -69,102 +58,149 @@ Then you can choice needed function.
 
 #### **Operators**
 
-* `nullOr` – to run assertion than value is defined
-* `not` – inverses assert action
+Almost all functions can be chained with different operators.
 
-Half of the functions can be chained with operator or even combined each other.
+Moreover, you can combine them each other.
+
+* `is` – modifies assert functions to return `true` or `false` as a result
+* `all` – applies an assert function to a provided array
+* `nullOr` – runs assertion only if input value is defined
+* `not` – inverts assertion action
+
 
 For example:
 ```typescript
-Assert.nullOr.boolean(value);
-Assert.nullOr.not.emptyString(value);
-Assert.not.defined(value);
+// is
+const someNumber = 10;
+if (Assert.is.range(someNumber, 10, 15)) {
+  ...
+}
+
+
+// all 
+class User {
+  id: number;
+  name: string;
+}
+
+const someArray = [new User(), new User];
+Assert.all.instanceOf(someArray, User);
+
+// ...futher actions
+
+
+// nullOr
+const someBoolean = null; // or undefined
+Assert.nullOr.boolean(someBoolean);
+// ...futher actions
+
+
+// not
+const someFunction = () => 123;
+Assert.not.throws(someFunction(), TypeError)
+
+
+// combinations
+Assert.is.nullOr.not.emptyString('some string');
+Assert.not.endsWith('str', 'some suffix');
+Assert.nullOr.all.greaterThan([10, 11, 12, 13], 5);
+// ...and so on
 ```
+
+
+***
 
 
 ### String Assertions
 
 Method                                                        | Description
 ------------------------------------------------------------- | --------------------------------------------------
-`string(value, customMessage?: string)`                       | Ensures that value is a string
-`emptyString(value, customMessage?: string)`                  | Ensures that value is an empty string
-`contains(value, subString: string, customMessage?: string)`  | Ensures that value contains substring
-`startsWith(value, prefix: string, customMessage?: string)`   | Ensures that value starts with some prefix
-`endsWith(value, suffix: string, customMessage?: string)`     | Ensures that value ends with some suffix
+`string(value, message?: string)`                             | Ensures that value is a string
+`emptyString(value, message?: string)`                        | Ensures that value is an empty string
+`contains(value, subString: string, message?: string)`        | Ensures that value contains substring
+`startsWith(value, prefix: string, message?: string)`         | Ensures that value starts with some prefix
+`endsWith(value, suffix: string, message?: string)`           | Ensures that value ends with some suffix
+
 
 
 ### Number Assertions
 
 Method                                                              | Description
 ------------------------------------------------------------------- | --------------------------------------------------
-`number(value, customMessage?: string)`                             | Ensures that value is a number
-`natural(value, customMessage?: string)`                            | Ensures that value is a natural number
-`greaterThan(value, limit: number, customMessage?: string)`         | Ensures that value is greater than limit
-`greaterThanOrEqual(value, limit: number, customMessage?: string)`  | Ensures that value is greater or equal to limit
-`lessThan(value, limit: number, customMessage?: string)`            | Ensures that value is less than limit
-`lessThanOrEqual(value, limit: number, customMessage?: string)`     | Ensures that value is less or equal to limit
-`range(value, min: number, max: number, customMessage?: string)`    | Ensures that value is in range of min and max
+`number(value, message?: string)`                                   | Ensures that value is a number
+`natural(value, message?: string)`                                  | Ensures that value is a natural number
+`greaterThan(value, limit: number, message?: string)`               | Ensures that value is greater than limit
+`greaterThanOrEqual(value, limit: number, message?: string)`        | Ensures that value is greater or equal to limit
+`lessThan(value, limit: number, message?: string)`                  | Ensures that value is less than limit
+`lessThanOrEqual(value, limit: number, message?: string)`           | Ensures that value is less or equal to limit
+`range(value, min: number, max: number, message?: string)`          | Ensures that value is in range of min and max
+
 
 
 ### Boolean Assertions
 
 Method                                                   | Description
 -------------------------------------------------------- | --------------------------------------------------
-`boolean(value, customMessage?: string)`                 | Ensures that value is a boolean
-`true(value, customMessage?: string)`                    | Ensures that value is true
-`false(value, customMessage?: string)`                   | Ensures that value is false
+`boolean(value, message?: string)`                       | Ensures that value is a boolean
+`true(value, message?: string)`                          | Ensures that value is true
+`false(value, message?: string)`                         | Ensures that value is false
+
 
 
 ### Object Assertions
 
 Method                                                   | Description
 -------------------------------------------------------- | --------------------------------------------------
-`object(value, customMessage?: string)`                  | Ensures that value is an object (`{}`, not `Array` or `null`)
+`object(value, message?: string)`                        | Ensures that value is an object (`{}`, not `Array` or `null`)
+
+
+
+### Function Assertions
+
+Method                                                   | Description
+-------------------------------------------------------- | --------------------------------------------------
+`function(value, message?: string)`                      | Ensures that value is a function
+
 
 
 ### Array Assertions
 
-Method                                                                            | Description
---------------------------------------------------------------------------------- | ----------------------------------------
-`array(array: T, customMessage?: string)`                                         | Ensures that value is an array
-`oneOf(value, values: any[], customMessage?: string)`                             | Ensures that value is one of values
-`arrayLength(array: T, number: number, customMessage?: string)`                   | Ensures that array length is equal to number
-`arrayMinLength(array: T, limit: number, customMessage?: string)`                 | Ensures that array length is not less than limit
-`arrayMaxLength(array: T, limit: number, customMessage?: string)`                 | Ensures that array length is not greater than limit
-`arrayLengthBetween(array: T, min: number, max: number, customMessage?: string)`  | Ensures that array length is inside a min and max
+Method                                                                   | Description
+------------------------------------------------------------------------ | ----------------------------------------
+`array(array, message?: string)`                                         | Ensures that value is an array
+`oneOf(value, values, message?: string)`                                 | Ensures that value is one of values (`string`/`number` array)
+`arrayLength(array, number: number, message?: string)`                   | Ensures that array length is equal to number
+`arrayMinLength(array, limit: number, message?: string)`                 | Ensures that array length is not less than limit
+`arrayMaxLength(array, limit: number, message?: string)`                 | Ensures that array length is not greater than limit
+`arrayLengthBetween(array, min: number, max: number, message?: string)`  | Ensures that array length is inside a min and max
 
 
-### Insatnce Assertions
 
-Method                                                                            | Description
---------------------------------------------------------------------------------- | --------------------------------------------------
-`instanceOf(value, instanceClass: T, customMessage?: string)`                     | Ensures that value is an instance of some class
-`instanceOfAny(value, instanceClasses: InstanceClass[], customMessage?: string)`  | Ensures that value is an instance of any class
-`allAreInstanceOf(array: T[], instanceClass: T, customMessage?: string)`          | Ensures that arary values are all instance os some class
+### Instance Assertions
+
+Method                                                                   | Description
+------------------------------------------------------------------------ | --------------------------------------------------
+`instanceOf(value, instanceClass, message?: string)`                     | Ensures that value is an instance of some class
+`instanceOfAny(value, instanceClasses, message?: string)`                | Ensures that value is an instance of any class
+
+
+
+### RexExp Assertions
+
+Method                                                   | Description
+-------------------------------------------------------- | --------------------------------------------------
+`match(value, regExp: RegExp, message?: string)`         | Ensures that value is match a regular expression
+
 
 
 ### Other Assertions
 
-Method                                                                               | Description
------------------------------------------------------------------------------------- | --------------------------------------------------
-`defined(value: T, customMessage?: string)`                                          | Ensures that value is defined (**not** `null` or `undefined`)
-`equal(value, expect, customMessage?: string)`                                       | Ensures that value is equal to expec (`value === expect`)
-`throws(expression: () => any, errorClass?: InstanceClass, customMessage?: string)`  | Ensures that expression throws some error
+Method                                                                  | Description
+----------------------------------------------------------------------- | --------------------------------------------------
+`defined(value, message?: string)`                                      | Ensures that value is defined (**not** `null`, `undefined` or `NaN`)
+`equal(value, expect, message?: string)`                                | Ensures that value is equal to expec (`value === expect`)
+`throws(expression: () => any, errorClass?, message?: string)`          | Ensures that expression throws some error
 
-
-### Type Checks
-##### Returns boolean.
-
-Method                                      | Description
---------------------------------------------| --------------------------------------------------
-`isString(value)`                           | Checks that value is a type of string
-`isNumber(value)`                           | Checks that value is a type of number
-`isBoolean(value)`                          | Checks that value is a type of boolean
-`isFunction(value)`                         | Checks that value is a type of function
-`isObject(value)`                           | Checks that value is a type of object (`{}`, not `Array` or `null`)
-`isArray(value)`                            | Checks that value is array
-`isDefined(value)`                          | Checks that value defined (**not** `null` or `undefined`)
-`isUndefined(value)`                        | Checks that value not defined (`null` or `undefined`)
 
 
 # Authors
