@@ -1,2 +1,2 @@
 export { Assert } from './assert';
-export { WebUtilsAssertionError} from './assertion.error';
+export { WebUtilsAssertionError} from './classes/error/assertion.error';

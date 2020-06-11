@@ -1,1 +1,1 @@
-export { AbstractAppError } from './abstract-app-error';
+export * from './errors';
