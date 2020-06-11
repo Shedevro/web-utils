@@ -30,6 +30,7 @@
     "object-curly-spacing": "off",
     "operator-linebreak": "off",
     "padded-blocks": "off",
+    "prefer-rest-params": "off",
     "require-jsdoc": "off",
     "valid-jsdoc": "warn"
   }

@@ -1,4 +1,4 @@
-export abstract class MsgBuilder {
+export abstract class MessageBuilder {
 
   static expected(expected: string, actual?: string) {
     const gotLine = actual ? `. Got: ${actual}` : '';

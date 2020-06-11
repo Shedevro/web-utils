@@ -46,7 +46,7 @@ jobs:
         run: npm i
 
       - name: Build packages
-        run: npx lerna run build
+        run: npm run build
 
       - name: Run tests
         run: npx jest --coverageReporters=lcov
