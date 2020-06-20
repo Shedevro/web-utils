@@ -1,13 +1,24 @@
 {
   "name": "@shedevro/assert",
   "version": "0.0.8",
-  "description": "Assertion library for better and safe coding",
+  "description": "Assertion typescript library for better, comfortable and safe coding. See readme!",
   "keywords": [
     "web",
     "utils",
     "assert",
+    "asserts",
+    "assertion",
+    "assertions",
     "typescript",
-    "ts"
+    "ts",
+    "type",
+    "types",
+    "ckeck",
+    "valid",
+    "validation",
+    "guard",
+    "typeguard",
+    "safe"
   ],
   "author": "Shedevro <worldschaos@gmail.com>",
   "homepage": "https://github.com/Shedevro/web-utils/tree/master/packages/assert#readme",
