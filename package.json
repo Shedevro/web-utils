@@ -10,7 +10,6 @@
     "build": "lerna run build",
     "lint": "lerna run lint",
     "test": "jest",
-    "preversion": "npm run changelog:root && npm run changelog:scopes",
     "changelog:root": "conventional-changelog -p angular -i CHANGELOG.md -r 0 -svu",
     "changelog:scopes": "lerna exec --concurrency 1 --stream -- 'conventional-changelog -p angular -i $PWD/CHANGELOG.md --commit-path $PWD -k $PWD/package.json -r 0 -svu'"
   },
