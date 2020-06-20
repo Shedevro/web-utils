@@ -2,7 +2,7 @@ namespace Types {
   export type One = string;
   export type OneNullable = One | null;
 
-  export type Array = string[];
+  export type Array = One[];
   export type ArrayNullable = Array | null;
 }
 
