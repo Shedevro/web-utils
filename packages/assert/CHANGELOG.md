@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.10 (2020-06-20)
+
+**Note:** Version bump only for package @shedevro/assert
+
+
+
+
+
 
 
 ## [0.0.8](https://github.com/Shedevro/web-utils/compare/v0.0.6...v0.0.8) (2020-06-11)
@@ -34,6 +42,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **ci:** test on every push ([3298dc0](https://github.com/Shedevro/web-utils/commit/3298dc0f83e511b347766dfe418d33f8b2a460d1))
-
-
-

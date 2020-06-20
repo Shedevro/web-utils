@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.10 (2020-06-20)
+
+**Note:** Version bump only for package @shedevro/core
+
+
+
+
+
 
 
 ## [0.0.8](https://github.com/Shedevro/web-utils/compare/v0.0.6...v0.0.8) (2020-06-11)
@@ -29,6 +37,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **build:** no dist after build ([ba600d9](https://github.com/Shedevro/web-utils/commit/ba600d9b4aa68daf8856e1b86344591417ba280d))
-
-
-
