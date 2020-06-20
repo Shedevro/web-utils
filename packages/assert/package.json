@@ -1,6 +1,6 @@
 {
   "name": "@shedevro/assert",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Assertion typescript library for better, comfortable and safe coding. See readme!",
   "keywords": [
     "web",
@@ -48,6 +48,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@shedevro/core": "^0.0.8"
+    "@shedevro/core": "^0.0.9"
   }
 }
