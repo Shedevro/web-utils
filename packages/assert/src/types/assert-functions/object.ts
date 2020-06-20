@@ -1,8 +1,8 @@
 namespace Types {
-  export type One = object;
+  export type One = Record<string, unknown>;
   export type OneNullable = One | null;
 
-  export type Array = object[];
+  export type Array = One[];
   export type ArrayNullable = Array | null;
 }
 

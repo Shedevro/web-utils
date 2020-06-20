@@ -2,7 +2,7 @@ namespace Types {
   export type One<T extends boolean = boolean> = T;
   export type OneNullable<T extends boolean = boolean> = One | null;
 
-  export type Array<T extends boolean = boolean> = T[];
+  export type Array<T extends boolean = boolean> = One[];
   export type ArrayNullable<T extends boolean = boolean> = Array | null;
 }
 
