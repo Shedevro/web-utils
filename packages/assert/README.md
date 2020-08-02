@@ -1,4 +1,4 @@
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Shedevro/web-utils/CI?style=flat-square)](https://github.com/Shedevro/web-utils/actions?query=workflow%3ACI)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Shedevro/web-utils/CI?style=flat-square)](https://github.com/Shedevro/web-utils/actions?query=workflow%3A%22CI+Deploy%22)
 [![Coveralls github](https://img.shields.io/coveralls/github/Shedevro/web-utils?style=flat-square)](https://coveralls.io/github/Shedevro/web-utils)
 [![npm (scoped)](https://img.shields.io/npm/v/@shedevro/assert?style=flat-square)](https://www.npmjs.com/package/@shedevro/assert)
 [![npm](https://img.shields.io/npm/dm/@shedevro/assert?color=orange&style=flat-square)](https://www.npmjs.com/package/@shedevro/assert)
@@ -11,13 +11,13 @@ Library provides assertion utility for better and safe coding.
 **Features:**
 * Right assertion return types:
 
-  `Assert.someFn(value): asserts value is string` or `Assert.is.someFn(value): value is string` etc. 
- 
+  `Assert.someFn(value): asserts value is string` or `Assert.is.someFn(value): value is string` etc.
+
 * Assert functions can be chained with [operators](#user-content-operators) (`is`, `all`, `nullOr`, `not`)
 * throws WebUtilsAssertionError (extends from Error). Provides right stacktrace (especialy helpfull then coding with Angular to see links to .ts files)
 
 
-## Installation 
+## Installation
 ```sh
 npm i @shedevro/assert --save
 ```
@@ -77,7 +77,7 @@ if (Assert.is.range(someNumber, 10, 15)) {
 }
 
 
-// all 
+// all
 class User {
   id: number;
   name: string;
@@ -211,7 +211,7 @@ All credits for great idea to [@webmozart](https://github.com/webmozart) with hi
 # Contribute
 If you have ideas on how to improve this library, you are welcome!
 
-Please read [readme](https://github.com/Shedevro/web-utils) of root project directory. 
+Please read [readme](https://github.com/Shedevro/web-utils) of root project directory.
 
 # License
 The content of this package is licensed under the [MIT license](https://github.com/Shedevro/web-utils/blob/master/LICENSE).
