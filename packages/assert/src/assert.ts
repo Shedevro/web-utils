@@ -75,7 +75,13 @@ class AssertClass implements AssertType {
     const message = MessageBuilder.expectedToBe(`${prefix} string`, '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isString(v) && !v.trim();
+    const expression = v => {
+      if (this.opts.operators?.not) {
+        return !TypeHelper.isString(v) || !v.trim(); // reversed for 'not' operator
+      } else {
+        return TypeHelper.isString(v) && !v.trim();
+      }
+    };
 
     return this.processAssertion(
       value,
