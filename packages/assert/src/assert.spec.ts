@@ -19,13 +19,20 @@ describe('Assert: string', () => {
   });
 
   it(Assert.emptyString.name, () => {
+    expect(Assert.emptyString('')).toBeUndefined();
     expect(Assert.emptyString('  ')).toBeUndefined();
+    expect(() => Assert.emptyString(null)).toThrow(WebUtilsAssertionError);
+    expect(() => Assert.emptyString(1)).toThrow(WebUtilsAssertionError);
+    expect(() => Assert.emptyString('string')).toThrow(WebUtilsAssertionError);
+
     expect(Assert.not.emptyString('some string')).toBeUndefined();
+    expect(() => Assert.not.emptyString('  ')).toThrow(WebUtilsAssertionError);
+    expect(() => Assert.not.emptyString(null)).toThrow(WebUtilsAssertionError);
+    expect(() => Assert.not.emptyString(1)).toThrow(WebUtilsAssertionError);
+
     expect(Assert.nullOr.emptyString(null)).toBeUndefined();
     expect(Assert.nullOr.not.emptyString(null)).toBeUndefined();
     expect(Assert.all.emptyString(['', '', ''])).toBeUndefined();
-    expect(() => Assert.emptyString(null)).toThrow(WebUtilsAssertionError);
-    expect(() => Assert.not.emptyString('  ')).toThrow(WebUtilsAssertionError);
   });
 
   it(Assert.contains.name, () => {
