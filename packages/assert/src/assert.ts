@@ -436,7 +436,7 @@ class AssertClass implements AssertType {
    * Other
    */
   defined<T>(value: T, customMessage?: string) {
-    const prefix = this.opts.operators?.not ? 'defined' : 'undefined';
+    const prefix = this.opts.operators?.not ? 'undefined' : 'defined';
     const message = MessageBuilder.expectedToBe(prefix, '{1}');
     this.setMessage({ message, customMessage });
 
