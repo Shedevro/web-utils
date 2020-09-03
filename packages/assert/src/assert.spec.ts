@@ -199,6 +199,7 @@ describe('Assert: array', () => {
   it(Assert.arrayMinLength.name, () => {
     const array = ['one', 'two', 'three'];
     expect(Assert.arrayMinLength(array, 2)).toBeUndefined();
+    expect(Assert.arrayMinLength(array, 3)).toBeUndefined();
     expect(Assert.nullOr.arrayMinLength(null, 3)).toBeUndefined();
     expect(() => Assert.arrayMinLength(array, 5)).toThrow(WebUtilsAssertionError);
     expect(() => Assert.arrayMinLength(null, 5, 'custom message')).toThrow(WebUtilsAssertionError);
@@ -207,6 +208,7 @@ describe('Assert: array', () => {
   it(Assert.arrayMaxLength.name, () => {
     const array = ['one', 'two', 'three'];
     expect(Assert.arrayMaxLength(array, 3)).toBeUndefined();
+    expect(Assert.arrayMaxLength(array, 4)).toBeUndefined();
     expect(Assert.nullOr.arrayMaxLength(null, 3)).toBeUndefined();
     expect(() => Assert.arrayMaxLength(array, 1)).toThrow(WebUtilsAssertionError);
     expect(() => Assert.arrayMaxLength(null, 1, 'custom message')).toThrow(WebUtilsAssertionError);

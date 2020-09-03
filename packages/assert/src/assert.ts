@@ -346,7 +346,7 @@ class AssertClass implements AssertType {
 
   arrayMinLength(array: any[], limit: number, customMessage?: string) {
     const message = MessageBuilder.expected('arary min length to be {2}', '{1}');
-    return this.greaterThan(array?.length, limit, customMessage ?? message);
+    return this.greaterThanOrEqual(array?.length, limit, customMessage ?? message);
   }
 
   arrayMaxLength(array: any[], limit: number, customMessage?: string) {
