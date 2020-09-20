@@ -24,7 +24,7 @@ export type AssertOpts = Partial<{
 }>
 
 
-export type DefaultAssertOperators =
+type DefaultAssertOperators =
   AllOperatorAsserts &
   IsOperator &
   NotOperatorAsserts &
