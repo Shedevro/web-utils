@@ -48,6 +48,9 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@shedevro/core": "^0.0.13"
+    "@shedevro/core": "~0.0.13"
+  },
+  "peerDependencies": {
+    "typescript": ">= 4.1.5 < 5.0"
   }
 }

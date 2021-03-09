@@ -522,7 +522,7 @@ class AssertClass implements AssertType {
 
   private processAssertion(
     value,
-    assertExpression: (v) => boolean,
+    assertExpression: (v: unknown) => boolean,
     throwError: () => void,
   ): void | boolean {
 

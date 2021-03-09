@@ -28,8 +28,8 @@ export abstract class TypeHelper {
     return !this.isUndefined(value);
   }
 
-  static isUndefined(value): value is null | undefined {
-    return [NaN, null, undefined].includes(value);
+  static isUndefined(value: unknown): value is null | undefined {
+    return value === null  || value === undefined || Number.isNaN(value);
   }
 
 

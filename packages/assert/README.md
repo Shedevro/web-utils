@@ -97,7 +97,7 @@ Assert.nullOr.boolean(someBoolean);
 
 // not
 const someFunction = () => 123;
-Assert.not.throws(someFunction(), TypeError)
+Assert.not.throws(someFunction, TypeError);
 
 
 // combinations
