@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## 0.0.14 (2021-03-09)
+
+**Note:** Version bump only for package root
+
+
+
+
+
 # [](https://github.com/Shedevro/web-utils/compare/v0.0.13...v) (2020-12-14)
 
 
@@ -81,6 +94,3 @@
 ### Features
 
 * **ci:** test on every push ([3298dc0](https://github.com/Shedevro/web-utils/commit/3298dc0f83e511b347766dfe418d33f8b2a460d1))
-
-
-
