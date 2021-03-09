@@ -1,39 +1,20 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-## 0.0.13 (2020-09-03)
-
-**Note:** Version bump only for package @shedevro/core
+# Unreleased (2020-12-14)
 
 
 
-
-
-## 0.0.12 (2020-09-01)
-
-**Note:** Version bump only for package @shedevro/core
+## [0.0.13](https://github.com/Shedevro/web-utils/compare/v0.0.12...v0.0.13) (2020-09-03)
 
 
 
-
-
-## 0.0.11 (2020-08-02)
-
-**Note:** Version bump only for package @shedevro/core
+## [0.0.12](https://github.com/Shedevro/web-utils/compare/v0.0.11...v0.0.12) (2020-09-01)
 
 
 
-
-
-## 0.0.10 (2020-06-20)
-
-**Note:** Version bump only for package @shedevro/core
+## [0.0.11](https://github.com/Shedevro/web-utils/compare/v0.0.10...v0.0.11) (2020-08-02)
 
 
 
-
+## [0.0.10](https://github.com/Shedevro/web-utils/compare/v0.0.8...v0.0.10) (2020-06-20)
 
 
 
@@ -61,3 +42,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **build:** no dist after build ([ba600d9](https://github.com/Shedevro/web-utils/commit/ba600d9b4aa68daf8856e1b86344591417ba280d))
+
+
+
