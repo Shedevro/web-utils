@@ -19,26 +19,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install node
+      - name: Install Node
         uses: actions/setup-node@v1
         with:
-          node-version: '14'
+          node-version: 14
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Cache node modules
+      - name: Cache Node modules
         uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: npm i
+        run: npm ci
 
       - name: Build packages
         run: npm run build
