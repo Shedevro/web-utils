@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.2 (2022-04-23)
+
+
+### Bug Fixes
+
+* **assert:** fix `Assert.function` return to type ([a563034](https://github.com/Shedevro/web-utils/commit/a563034c21842155dd8d60097ef6f211f7308ba2))
+
+
+
+
+
 ## 1.1.1 (2022-04-23)
 
 
