@@ -1,20 +1,20 @@
 namespace Types {
   export type One<T extends boolean = boolean> = T;
-  export type OneNullable<T extends boolean = boolean> = One | null;
+  export type OneNullable<T extends boolean = boolean> = One<T> | null;
 
-  export type Array<T extends boolean = boolean> = One[];
-  export type ArrayNullable<T extends boolean = boolean> = Array | null;
+  export type Array<T extends boolean = boolean> = One<T>[];
+  export type ArrayNullable<T extends boolean = boolean> = Array<T> | null;
 }
 
 
- namespace Boolean {
+namespace Boolean {
 
   export type AssertsTemplate<R> = {
-    boolean(value, message?: string): asserts value is R;
+    boolean(value: unknown, message?: string): asserts value is R;
   }
 
   export type ValueIsTemplate<R> = {
-    boolean(value): value is R;
+    boolean(value: unknown): value is R;
   }
 }
 
@@ -22,11 +22,11 @@ namespace Types {
 namespace True {
 
   export type AssertsTemplate<R> = {
-    true(value, message?: string): asserts value is R;
+    true(value: unknown, message?: string): asserts value is R;
   }
 
   export type ValueIsTemplate<R> = {
-    true(value): value is R;
+    true(value: unknown): value is R;
   }
 }
 
@@ -34,11 +34,11 @@ namespace True {
 namespace False {
 
   export type AssertsTemplate<R> = {
-    false(value, message?: string): asserts value is R;
+    false(value: unknown, message?: string): asserts value is R;
   }
 
   export type ValueIsTemplate<R> = {
-    false(value): value is R;
+    false(value: unknown): value is R;
   }
 }
 

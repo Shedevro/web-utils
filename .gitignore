@@ -8,3 +8,5 @@ node_modules/
 tsconfig.tsbuildinfo
 sandbox.ts
 tsconfig.ts-node.json
+
+.DS_Store

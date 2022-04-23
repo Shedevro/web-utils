@@ -1,5 +1,5 @@
 namespace Types {
-  export type One = Function;
+  export type One = (...args: any[]) => unknown;
   export type OneNullable = One | null;
 
   export type Array = One[];
@@ -10,11 +10,11 @@ namespace Types {
 namespace Function {
 
   export type AssertsTemplate<R> = {
-    function(value, message?: string): asserts value is R;
+    function(value: unknown, message?: string): asserts value is R;
   }
 
   export type ValueIsTemplate<R> = {
-    function(value): value is R;
+    function(value: unknown): value is R;
   }
 }
 

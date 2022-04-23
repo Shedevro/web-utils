@@ -3,23 +3,23 @@ namespace Match {
   export namespace Asserts {
 
     export type One = {
-      match<T>(value, regExp: RegExp, message?: string): asserts value is NonNullable<T>;
+      match(value: unknown, regExp: RegExp, message?: string): asserts value is string;
     }
 
     export type OneNullable = {
-      match<T>(value, regExp: RegExp, message?: string): asserts value is NonNullable<T> | null;
+      match(value: unknown, regExp: RegExp, message?: string): asserts value is string | null;
     }
 
     export type Array = {
-      match<T>(value, regExp: RegExp, message?: string): asserts value is NonNullable<T[]>;
+      match(value: unknown, regExp: RegExp, message?: string): asserts value is string[];
     }
 
     export type ArrayNullable = {
-      match<T>(value, regExp: RegExp, message?: string): asserts value is NonNullable<T[]> | null;
+      match(value: unknown, regExp: RegExp, message?: string): asserts value is string[] | null;
     }
 
     export type Not = {
-      match<T>(value, regExp: RegExp, message?: string): void;
+      match(value: unknown, regExp: RegExp, message?: string): void;
     }
   }
 
@@ -27,23 +27,23 @@ namespace Match {
   export namespace ValueIs {
 
     export type One = {
-      match<T>(value, regExp: RegExp): value is NonNullable<T>;
+      match(value: unknown, regExp: RegExp): value is string;
     }
 
     export type OneNullable = {
-      match<T>(value, regExp: RegExp): value is NonNullable<T> | null;
+      match(value: unknown, regExp: RegExp): value is string | null;
     }
 
     export type Array = {
-      match<T>(value, regExp: RegExp): value is NonNullable<T[]>;
+      match(value: unknown, regExp: RegExp): value is string[];
     }
 
     export type ArrayNullable = {
-      match<T>(value, regExp: RegExp): value is NonNullable<T[]> | null;
+      match(value: unknown, regExp: RegExp): value is string[] | null;
     }
 
     export type Not = {
-      match<T>(value, regExp: RegExp): boolean;
+      match(value: unknown, regExp: RegExp): boolean;
     }
   }
 }

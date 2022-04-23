@@ -28,6 +28,6 @@
     "build": "tsc",
     "prebuild": "rimraf ./dist && npm run lint",
     "postbuild": "lerna bootstrap",
-    "lint": "eslint"
+    "lint": "npx eslint"
   }
 }

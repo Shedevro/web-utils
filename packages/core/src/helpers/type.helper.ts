@@ -1,26 +1,26 @@
 export abstract class TypeHelper {
 
-  static isString(value): value is string {
+  static isString(value: unknown): value is string {
     return typeof value === 'string';
   }
 
-  static isNumber(value): value is number {
+  static isNumber(value: unknown): value is number {
     return typeof value === 'number' && !isNaN(value);
   }
 
-  static isBoolean(value): value is boolean {
+  static isBoolean(value: unknown): value is boolean {
     return typeof value === 'boolean';
   }
 
-  static isObject(value): value is object {
+  static isObject(value: unknown): value is object {
     return typeof value === 'object' && this.isDefined(value) && !this.isArray(value);
   }
 
-  static isFunction(value): value is Function {
+  static isFunction(value: unknown): value is CallableFunction {
     return typeof value === 'function';
   }
 
-  static isArray(value): value is any[] {
+  static isArray(value: unknown): value is unknown[] {
     return Array.isArray(value);
   }
 
@@ -29,11 +29,10 @@ export abstract class TypeHelper {
   }
 
   static isUndefined(value: unknown): value is null | undefined {
-    return value === null  || value === undefined || Number.isNaN(value);
+    return value === null || value === undefined || Number.isNaN(value);
   }
 
-
-  static typeOf(value) {
+  static typeOf(value: unknown): 'undefined' | 'array' | 'object' | 'boolean' | 'number' | 'string' | 'function' | 'symbol' | 'bigint' {
     switch (true) {
       case this.isUndefined(value):
         return 'undefined';

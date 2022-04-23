@@ -113,95 +113,78 @@ Assert.nullOr.all.greaterThan([10, 11, 12, 13], 5);
 
 ### String Assertions
 
-Method                                                        | Description
-------------------------------------------------------------- | --------------------------------------------------
-`string(value, message?: string)`                             | Ensures that value is a string
-`emptyString(value, message?: string)`                        | Ensures that value is an empty string
-`contains(value, subString: string, message?: string)`        | Ensures that value contains substring
-`startsWith(value, prefix: string, message?: string)`         | Ensures that value starts with some prefix
-`endsWith(value, suffix: string, message?: string)`           | Ensures that value ends with some suffix
-
+| Method                                                 | Description                                                   |
+|--------------------------------------------------------|---------------------------------------------------------------|
+| `string(value, message?: string)`                      | Ensures that value is a string                                |
+| `emptyString(value, message?: string)`                 | Ensures that value is an empty string                         |
+| `contains(value, subString: string, message?: string)` | Ensures that value contains substring                         |
+| `startsWith(value, prefix: string, message?: string)`  | Ensures that value starts with some prefix                    |
+| `endsWith(value, suffix: string, message?: string)`    | Ensures that value ends with some suffix                      |
+| `oneOf(value, values, message?: string                 | Ensures that value is one of values (`string`/`number` array) |
 
 
 ### Number Assertions
 
-Method                                                              | Description
-------------------------------------------------------------------- | --------------------------------------------------
-`number(value, message?: string)`                                   | Ensures that value is a number
-`natural(value, message?: string)`                                  | Ensures that value is a natural number
-`greaterThan(value, limit: number, message?: string)`               | Ensures that value is greater than limit
-`greaterThanOrEqual(value, limit: number, message?: string)`        | Ensures that value is greater or equal to limit
-`lessThan(value, limit: number, message?: string)`                  | Ensures that value is less than limit
-`lessThanOrEqual(value, limit: number, message?: string)`           | Ensures that value is less or equal to limit
-`range(value, min: number, max: number, message?: string)`          | Ensures that value is in range of min and max
-
-
+| Method                                                       | Description                                     |
+|--------------------------------------------------------------|-------------------------------------------------|
+| `number(value, message?: string)`                            | Ensures that value is a number                  |
+| `natural(value, message?: string)`                           | Ensures that value is a natural number          |
+| `greaterThan(value, limit: number, message?: string)`        | Ensures that value is greater than limit        |
+| `greaterThanOrEqual(value, limit: number, message?: string)` | Ensures that value is greater or equal to limit |
+| `lessThan(value, limit: number, message?: string)`           | Ensures that value is less than limit           |
+| `lessThanOrEqual(value, limit: number, message?: string)`    | Ensures that value is less or equal to limit    |
+| `range(value, min: number, max: number, message?: string)`   | Ensures that value is in range of min and max   |
 
 ### Boolean Assertions
 
-Method                                                   | Description
--------------------------------------------------------- | --------------------------------------------------
-`boolean(value, message?: string)`                       | Ensures that value is a boolean
-`true(value, message?: string)`                          | Ensures that value is true
-`false(value, message?: string)`                         | Ensures that value is false
-
-
+| Method                             | Description                     |
+|------------------------------------|---------------------------------|
+| `boolean(value, message?: string)` | Ensures that value is a boolean |
+| `true(value, message?: string)`    | Ensures that value is true      |
+| `false(value, message?: string)`   | Ensures that value is false     |
 
 ### Object Assertions
 
-Method                                                   | Description
--------------------------------------------------------- | --------------------------------------------------
-`object(value, message?: string)`                        | Ensures that value is an object (`{}`, not `Array` or `null`)
-
-
+| Method                            | Description                                                   |
+|-----------------------------------|---------------------------------------------------------------|
+| `object(value, message?: string)` | Ensures that value is an object (`{}`, not `Array` or `null`) |
 
 ### Function Assertions
 
-Method                                                   | Description
--------------------------------------------------------- | --------------------------------------------------
-`function(value, message?: string)`                      | Ensures that value is a function
-
-
+| Method                              | Description                      |
+|-------------------------------------|----------------------------------|
+| `function(value, message?: string)` | Ensures that value is a function |
 
 ### Array Assertions
 
-Method                                                                   | Description
------------------------------------------------------------------------- | ----------------------------------------
-`array(array, message?: string)`                                         | Ensures that value is an array
-`oneOf(value, values, message?: string)`                                 | Ensures that value is one of values (`string`/`number` array)
-`arrayLength(array, number: number, message?: string)`                   | Ensures that array length is equal to number
-`arrayMinLength(array, limit: number, message?: string)`                 | Ensures that array length is not less than limit
-`arrayMaxLength(array, limit: number, message?: string)`                 | Ensures that array length is not greater than limit
-`arrayLengthBetween(array, min: number, max: number, message?: string)`  | Ensures that array length is inside a min and max
-
-
+| Method                                                                  | Description                                         |
+|-------------------------------------------------------------------------|-----------------------------------------------------|
+| `array(value, message?: string)`                                        | Ensures that value is an array                      |
+| `arrayLength(value, expectedLength: number, message?: string)`          | Ensures that array length is equal to number        |
+| `arrayMinLength(value, limit: number, message?: string)`                | Ensures that array length is not less than limit    |
+| `arrayMaxLength(value, limit: number, message?: string)`                | Ensures that array length is not greater than limit |
+| `arrayLengthBetween(value, min: number, max: number, message?: string)` | Ensures that array length is inside a min and max   |
 
 ### Instance Assertions
 
-Method                                                                   | Description
------------------------------------------------------------------------- | --------------------------------------------------
-`instanceOf(value, instanceClass, message?: string)`                     | Ensures that value is an instance of some class
-`instanceOfAny(value, instanceClasses, message?: string)`                | Ensures that value is an instance of any class
-
-
+| Method                                                    | Description                                     |
+|-----------------------------------------------------------|-------------------------------------------------|
+| `instanceOf(value, instanceClass, message?: string)`      | Ensures that value is an instance of some class |
+| `instanceOfAny(value, instanceClasses, message?: string)` | Ensures that value is an instance of any class  |
 
 ### RexExp Assertions
 
-Method                                                   | Description
--------------------------------------------------------- | --------------------------------------------------
-`match(value, regExp: RegExp, message?: string)`         | Ensures that value is match a regular expression
-
-
+| Method                                           | Description                                      |
+|--------------------------------------------------|--------------------------------------------------|
+| `match(value, regExp: RegExp, message?: string)` | Ensures that value is match a regular expression |
 
 ### Other Assertions
 
-Method                                                                  | Description
------------------------------------------------------------------------ | --------------------------------------------------
-`defined(value, message?: string)`                                      | Ensures that value is defined (**not** `null`, `undefined` or `NaN`)
-`equal(value, expect, message?: string)`                                | Ensures that value is equal to expec (`value === expect`)
-`throws(expression: () => any, errorClass?, message?: string)`          | Ensures that expression throws some error
-
-
+| Method                                                         | Description                                                          |
+|----------------------------------------------------------------|----------------------------------------------------------------------|
+| `defined(value, message?: string)`                             | Ensures that value is defined (**not** `null`, `undefined` or `NaN`) |
+| `equal(value, expect, message?: string)`                       | Ensures that value is equal to expec (`value === expect`)            |
+| `throws(expression: () => any, errorClass?, message?: string)` | Ensures that expression throws some error                            |
 
 # Authors
 [Shedevro](https://github.com/Shedevro)

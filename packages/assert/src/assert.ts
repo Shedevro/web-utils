@@ -1,53 +1,48 @@
-import {ExitFunctionError, TypeHelper} from '@shedevro/core';
+/* eslint-disable prefer-rest-params */
 import type {InstanceClass} from '@shedevro/core';
-
-import {WebUtilsAssertionError} from './classes/error/assertion.error';
+import {ExitFunctionError, TypeHelper} from '@shedevro/core';
 import {MessageBuilder} from './classes/assertion-message-builder';
+import {WebUtilsAssertionError} from './classes/error/assertion.error';
 import {AssertionHelper} from './helpers/assertion.helper';
-import type {AssertOpts, AssertType} from './types/common';
-import type {AssertOperatorsConfig} from './types/config';
+import type {AssertOperatorsConfig, AssertOptions, AssertType} from './types/common';
 
 
-class AssertClass implements AssertType {
+class AssertClass {
 
   constructor(
-    private opts: AssertOpts = {},
+    private options: AssertOptions = {},
   ) {}
 
 
-  private get newInstance(): AssertType {
-    // @ts-ignore
+  private get newInstance(): AssertClass {
     return new AssertClass();
   }
 
 
   /** all operator */
-  get all() {
-    const instance = new AssertClass(this.opts);
+  get all(): AssertClass {
+    const instance = new AssertClass(this.options);
     instance.setOperator({ all: true });
     return instance;
   }
 
   /** is operator */
-  /** @ts-ignore */
-  get is() {
-    const instance = new AssertClass(this.opts);
+  get is(): AssertClass {
+    const instance = new AssertClass(this.options);
     instance.setOperator({ is: true });
     return instance;
   }
 
   /** not operator */
-  /** @ts-ignore */
-  get not() {
-    const instance = new AssertClass(this.opts);
+  get not(): AssertClass {
+    const instance = new AssertClass(this.options);
     instance.setOperator({ not: true });
     return instance;
   }
 
   /** nullOr operator */
-  /** @ts-ignore */
-  get nullOr() {
-    const instance = new AssertClass(this.opts);
+  get nullOr(): AssertClass {
+    const instance = new AssertClass(this.options);
     instance.setOperator({ nullOr: true });
     return instance;
   }
@@ -57,11 +52,11 @@ class AssertClass implements AssertType {
   /**
    * String
    */
-  string(value, customMessage?: string) {
+  string(value: unknown, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('a string', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isString(v);
+    const expression = (v: unknown): boolean => TypeHelper.isString(v);
 
     return this.processAssertion(
       value,
@@ -70,13 +65,13 @@ class AssertClass implements AssertType {
     );
   }
 
-  emptyString(value, customMessage?: string) {
-    const prefix = this.opts.operators?.not ? 'non-empty' : 'empty';
+  emptyString(value: unknown, customMessage?: string): void | boolean {
+    const prefix = this.options.operators?.not ? 'non-empty' : 'empty';
     const message = MessageBuilder.expectedToBe(`${prefix} string`, '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => {
-      if (this.opts.operators?.not) {
+    const expression = (v: unknown): boolean => {
+      if (this.options.operators?.not) {
         return !TypeHelper.isString(v) || !v.trim(); // reversed for 'not' operator
       } else {
         return TypeHelper.isString(v) && !v.trim();
@@ -90,12 +85,12 @@ class AssertClass implements AssertType {
     );
   }
 
-  contains(value, subString: string, customMessage?: string) {
-    const prefix = this.opts.operators?.not ? 'not to' : 'to';
+  contains(value: unknown, subString: string, customMessage?: string): void | boolean {
+    const prefix = this.options.operators?.not ? 'not to' : 'to';
     const message = MessageBuilder.expectedValue(`${prefix} contain {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isString(v) && v.includes(subString);
+    const expression = (v: unknown): boolean => TypeHelper.isString(v) && v.includes(subString);
 
 
     return this.processAssertion(
@@ -105,12 +100,12 @@ class AssertClass implements AssertType {
     );
   }
 
-  startsWith(value, prefix: string, customMessage?: string) {
-    const msgPrefix = this.opts.operators?.not ? 'not' : '';
+  startsWith(value: unknown, prefix: string, customMessage?: string): void | boolean {
+    const msgPrefix = this.options.operators?.not ? 'not' : '';
     const message = MessageBuilder.expectedValue(`${msgPrefix} to start with {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isString(v) && v.startsWith(prefix);
+    const expression = (v: unknown): boolean => TypeHelper.isString(v) && v.startsWith(prefix);
 
     return this.processAssertion(
       value,
@@ -119,12 +114,28 @@ class AssertClass implements AssertType {
     );
   }
 
-  endsWith(value, suffix: string, customMessage?: string) {
-    const prefix = this.opts.operators?.not ? 'not' : '';
+  endsWith(value: unknown, suffix: string, customMessage?: string): void | boolean {
+    const prefix = this.options.operators?.not ? 'not' : '';
     const message = MessageBuilder.expectedValue(`${prefix} to end with {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isString(v) && v.endsWith(suffix);
+    const expression = (v: unknown): boolean => TypeHelper.isString(v) && v.endsWith(suffix);
+
+    return this.processAssertion(
+      value,
+      expression,
+      () => this.throwError(...arguments),
+    );
+  }
+
+  oneOf(value: unknown, values: string[], customMessage?: string): void | boolean {
+    this.newInstance.array(values, 'Assert.oneOf:values should be an array. Got: {1}');
+
+    const prefix = this.options.operators?.not ? ' not' : '';
+    const message = MessageBuilder.expectedToBe(`${prefix} one of {2}`, '{1}');
+    this.setMessage({ message, customMessage });
+
+    const expression = (v: unknown): boolean => values.includes(v as string);
 
     return this.processAssertion(
       value,
@@ -138,11 +149,11 @@ class AssertClass implements AssertType {
   /**
    * Number
    */
-  number(value, customMessage?: string) {
+  number(value: unknown, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('a number', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isNumber(v);
+    const expression = (v: unknown): boolean => TypeHelper.isNumber(v);
 
     return this.processAssertion(
       value,
@@ -151,16 +162,16 @@ class AssertClass implements AssertType {
     );
   }
 
-  natural(value, customMessage?: string) {
+  natural(value: unknown, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('a posistive number', '{1}');
     this.greaterThanOrEqual(value, 0, customMessage ?? message);
   }
 
-  greaterThan(value, limit: number, customMessage?: string) {
+  greaterThan(value: unknown, limit: number, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('greater than {2}', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isNumber(v) && v > limit;
+    const expression = (v: unknown): boolean => TypeHelper.isNumber(v) && v > limit;
 
     return this.processAssertion(
       value,
@@ -169,11 +180,11 @@ class AssertClass implements AssertType {
     );
   }
 
-  greaterThanOrEqual(value, limit: number, customMessage?: string) {
+  greaterThanOrEqual(value: unknown, limit: number, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('greater than or equal to {2}', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isNumber(v) && v >= limit;
+    const expression = (v: unknown): boolean => TypeHelper.isNumber(v) && v >= limit;
 
     return this.processAssertion(
       value,
@@ -182,11 +193,11 @@ class AssertClass implements AssertType {
     );
   }
 
-  lessThan(value, limit: number, customMessage?: string) {
+  lessThan(value: unknown, limit: number, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('less than {2}', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isNumber(v) && v < limit;
+    const expression = (v: unknown): boolean => TypeHelper.isNumber(v) && v < limit;
 
     return this.processAssertion(
       value,
@@ -195,11 +206,11 @@ class AssertClass implements AssertType {
     );
   }
 
-  lessThanOrEqual(value, limit: number, customMessage?: string) {
+  lessThanOrEqual(value: unknown, limit: number, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('less than or equal to {2}', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isNumber(v) && v <= limit;
+    const expression = (v: unknown): boolean => TypeHelper.isNumber(v) && v <= limit;
 
     return this.processAssertion(
       value,
@@ -208,13 +219,12 @@ class AssertClass implements AssertType {
     );
   }
 
-
-  range(value, min: number, max: number, customMessage?: string) {
-    const prefix = this.opts.operators?.not ? 'not' : '';
+  range(value: unknown, min: number, max: number, customMessage?: string): void | boolean {
+    const prefix = this.options.operators?.not ? 'not' : '';
     const message = MessageBuilder.expectedToBe(`${prefix} between {2} and {3}`, '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isNumber(v) && v >= min && v <= max;
+    const expression = (v: unknown): boolean => TypeHelper.isNumber(v) && v >= min && v <= max;
 
     return this.processAssertion(
       value,
@@ -228,11 +238,11 @@ class AssertClass implements AssertType {
   /**
    * Boolean
    */
-  boolean(value, customMessage?: string) {
+  boolean(value: unknown, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('a boolean', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isBoolean(v);
+    const expression = (v: unknown): boolean => TypeHelper.isBoolean(v);
 
     return this.processAssertion(
       value,
@@ -241,11 +251,11 @@ class AssertClass implements AssertType {
     );
   }
 
-  true(value, customMessage?: string) {
+  true(value: unknown, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('true', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => v === true;
+    const expression = (v: unknown): boolean => v === true;
 
     return this.processAssertion(
       value,
@@ -254,11 +264,11 @@ class AssertClass implements AssertType {
     );
   }
 
-  false(value, customMessage?: string) {
+  false(value: unknown, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('false', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => v === false;
+    const expression = (v: unknown): boolean => v === false;
 
     return this.processAssertion(
       value,
@@ -272,11 +282,11 @@ class AssertClass implements AssertType {
   /**
    * Object
    */
-  object(value, customMessage?: string) {
+  object(value: unknown, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('an object', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isObject(v);
+    const expression = (v: unknown): boolean => TypeHelper.isObject(v);
 
     return this.processAssertion(
       value,
@@ -290,11 +300,11 @@ class AssertClass implements AssertType {
   /**
    * Function
    */
-  function(value, customMessage?: string) {
+  function(value: unknown, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('a function', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isFunction(v);
+    const expression = (v: unknown): boolean => TypeHelper.isFunction(v);
 
     return this.processAssertion(
       value,
@@ -308,29 +318,11 @@ class AssertClass implements AssertType {
   /**
    * Array
    */
-  array(array, customMessage?: string) {
+  array(value: unknown, customMessage?: string): void | boolean {
     const message = MessageBuilder.expectedToBe('an array', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isArray(v);
-
-    return this.processAssertion(
-      array,
-      expression,
-      () => this.throwError(...arguments),
-    );
-  }
-
-  oneOf(value, values: (string | number)[], customMessage?: string) {
-    const Instance: AssertType = this.newInstance;
-    Instance.array(values, 'Assert.oneOf:values should be an array. Got: {1}');
-
-
-    const prefix = this.opts.operators?.not ? ' not' : '';
-    const message = MessageBuilder.expectedToBe(`${prefix} one of {2}`, '{1}');
-    this.setMessage({ message, customMessage });
-
-    const expression = v => values.includes(v);
+    const expression = (v: unknown): boolean => TypeHelper.isArray(v);
 
     return this.processAssertion(
       value,
@@ -339,29 +331,56 @@ class AssertClass implements AssertType {
     );
   }
 
-  arrayLength(array: any[], number: number, customMessage?: string) {
-    const message = MessageBuilder.expected('arary length to be {2}', '{1}');
-    return this.equal(array?.length, number, customMessage ?? message);
+  arrayLength(value: unknown, expectedLength: number, customMessage?: string): void | boolean {
+    const message = MessageBuilder.expected('array length to be {2}', '{1}');
+    this.setMessage({ message, customMessage });
+
+    const expression = (v: unknown): boolean => TypeHelper.isArray(v) && v.length === expectedLength;
+
+    return this.processAssertion(
+      value,
+      expression,
+      () => this.throwError(...arguments),
+    );
   }
 
-  arrayMinLength(array: any[], limit: number, customMessage?: string) {
-    const message = MessageBuilder.expected('arary min length to be {2}', '{1}');
-    return this.greaterThanOrEqual(array?.length, limit, customMessage ?? message);
+  arrayMinLength(value: unknown, minLimit: number, customMessage?: string): void | boolean {
+    const message = MessageBuilder.expected('array min length to be {2}', '{1}');
+    this.setMessage({ message, customMessage });
+
+    const expression = (v: unknown): boolean => TypeHelper.isArray(v) && v.length >= minLimit;
+
+    return this.processAssertion(
+      value,
+      expression,
+      () => this.throwError(...arguments),
+    );
   }
 
-  arrayMaxLength(array: any[], limit: number, customMessage?: string) {
-    const message = MessageBuilder.expected('arary max length to be {2}', '{1}');
-    return this.lessThanOrEqual(array?.length, limit, customMessage ?? message);
+  arrayMaxLength(value: unknown, maxLimit: number, customMessage?: string): void | boolean {
+    const message = MessageBuilder.expected('array max length to be {2}', '{1}');
+    this.setMessage({ message, customMessage });
+
+    const expression = (v: unknown): boolean => TypeHelper.isArray(v) && v.length <= maxLimit;
+
+    return this.processAssertion(
+      value,
+      expression,
+      () => this.throwError(...arguments),
+    );
   }
 
-  arrayLengthBetween<T extends any[]>(
-    array: T | any,
-    min: number,
-    max: number,
-    customMessage?: string,
-  ) {
-    const message = MessageBuilder.expected('arary length to be between {2} and {3}', '{1}');
-    return this.range(array?.length, min, max, customMessage ?? message);
+  arrayLengthBetween(value: unknown, min: number, max: number, customMessage?: string): void | boolean {
+    const message = MessageBuilder.expected('array length to be between {2} and {3}', '{1}');
+    this.setMessage({ message, customMessage });
+
+    const expression = (v: unknown): boolean => TypeHelper.isArray(v) && v.length >= min && v.length <= max;
+
+    return this.processAssertion(
+      value,
+      expression,
+      () => this.throwError(...arguments),
+    );
   }
 
 
@@ -370,15 +389,15 @@ class AssertClass implements AssertType {
    * Instance
    */
   instanceOf<T extends InstanceClass>(
-    value,
+    value: unknown,
     instanceClass: T,
     customMessage?: string,
-  ) {
-    const prefix = this.opts.operators?.not ? 'not' : '';
+  ): void | boolean {
+    const prefix = this.options.operators?.not ? 'not' : '';
     const message = MessageBuilder.expectedToBe(`${prefix} an instance of {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => v instanceof instanceClass;
+    const expression = (v: unknown): boolean => v instanceof instanceClass;
 
     return this.processAssertion(
       value,
@@ -388,19 +407,19 @@ class AssertClass implements AssertType {
   }
 
   instanceOfAny(
-    value,
+    value: unknown,
     instanceClasses: InstanceClass[],
     customMessage?: string,
-  ) {
-    const Instance: AssertType = this.newInstance;
-    Instance.array(instanceClasses, `Assert.instanceOfAny:instanceClasses should be an array. Got: {1}`);
+  ): void | boolean {
+    const assertInstance: AssertType = this.newInstance as unknown as AssertType;
+    assertInstance.array(instanceClasses, 'Assert.instanceOfAny:instanceClasses should be an array. Got: {1}');
 
 
-    const prefix = this.opts.operators?.not ? 'not' : '';
+    const prefix = this.options.operators?.not ? 'not' : '';
     const message = MessageBuilder.expectedToBe(`${prefix} an instance of {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => instanceClasses.some(Class => v instanceof Class);
+    const expression = (v: unknown): boolean => instanceClasses.some(instanceClass => v instanceof instanceClass);
 
     return this.processAssertion(
       value,
@@ -413,16 +432,12 @@ class AssertClass implements AssertType {
   /**
    * RegExp
    */
-  match(value, regExp: RegExp, customMessage?: string) {
-    const Instance: AssertType = this.newInstance;
-    Instance.instanceOf(regExp, RegExp, 'Assert.match:regExp should be an instance of RegExp. Got: {1}');
-
-
-    const prefix = this.opts.operators?.not ? 'not' : '';
+  match(value: unknown, regExp: RegExp, customMessage?: string): void | boolean {
+    const prefix = this.options.operators?.not ? 'not' : '';
     const message = MessageBuilder.expectedValue(`${prefix} to match {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => regExp.test(v);
+    const expression = (v: unknown): boolean => typeof v === 'string' && regExp.test(v);
 
     return this.processAssertion(
       value,
@@ -435,12 +450,12 @@ class AssertClass implements AssertType {
   /**
    * Other
    */
-  defined<T>(value: T, customMessage?: string) {
-    const prefix = this.opts.operators?.not ? 'undefined' : 'defined';
+  defined<T>(value: T, customMessage?: string): void | boolean {
+    const prefix = this.options.operators?.not ? 'undefined' : 'defined';
     const message = MessageBuilder.expectedToBe(prefix, '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = v => TypeHelper.isDefined(v);
+    const expression = (v: unknown): boolean => TypeHelper.isDefined(v);
 
     return this.processAssertion(
       value,
@@ -449,14 +464,14 @@ class AssertClass implements AssertType {
     );
   }
 
-  equal(value, expect, customMessage?: string) {
-    const message = this.opts.operators?.not
+  equal<TExpect>(value: unknown, expect: TExpect, customMessage?: string): void | boolean {
+    const message = this.options.operators?.not
       ? MessageBuilder.expectedValue('not equal to {2}')
       : MessageBuilder.expected('{1} to equal {2}');
     this.setMessage({ message, customMessage });
 
 
-    const expression = v => v === expect;
+    const expression = (v: unknown): boolean => v === expect;
 
     return this.processAssertion(
       value,
@@ -465,22 +480,25 @@ class AssertClass implements AssertType {
     );
   }
 
-  throws(expression, expectedErrorClass?: InstanceClass, customMessage?: string): void | boolean {
-    const operatorIsApplied = this.opts.operators?.is || false;
-    let throwedError: { message?: string } | undefined = undefined;
-    let expressionResult;
+  throws(expression: unknown, expectedErrorClass?: InstanceClass, customMessage?: string): void | boolean {
+    const operatorIsApplied = this.options.operators?.is ?? false;
+    let throwedError: WebUtilsAssertionError | { message?: string } | undefined;
+    let expressionResult: unknown;
 
     try {
+      const assertInstance: AssertType = this.newInstance as unknown as AssertType;
+      assertInstance.function(expression, 'Assert.throws:expression must be function. Gor {1}');
+
       expressionResult = expression();
-    } catch (error) {
-      throwedError = error;
+    } catch (error: unknown) {
+      throwedError = error as typeof throwedError;
     }
 
 
     if (throwedError) {
       let isRightInstance = !expectedErrorClass || throwedError instanceof expectedErrorClass;
 
-      if (this.opts.operators?.not) {
+      if (this.options.operators?.not) {
         isRightInstance = !isRightInstance;
       }
 
@@ -496,7 +514,7 @@ class AssertClass implements AssertType {
         expressionResult += `: ${throwedError.message}`;
       }
     } else {
-      if (this.opts.operators?.not) {
+      if (this.options.operators?.not) {
         if (operatorIsApplied) {
           return true;
         }
@@ -510,7 +528,7 @@ class AssertClass implements AssertType {
 
     const message = (() => {
       const expectedErrorStr = expectedErrorClass ? '{2}' : 'error';
-      const prefix = this.opts.operators?.not ? 'not' : '';
+      const prefix = this.options.operators?.not ? 'not' : '';
       return MessageBuilder.expected(`${prefix} to throw ${expectedErrorStr}`, '{1}');
     })();
 
@@ -521,12 +539,12 @@ class AssertClass implements AssertType {
 
 
   private processAssertion(
-    value,
+    value: unknown,
     assertExpression: (v: unknown) => boolean,
     throwError: () => void,
   ): void | boolean {
 
-    const operatorIsApplied = this.opts.operators?.is || false;
+    const operatorIsApplied = this.options.operators?.is ?? false;
 
 
     try {
@@ -537,14 +555,14 @@ class AssertClass implements AssertType {
 
       let condition = assertExpression(value);
 
-      if (this.opts.operators?.not) {
+      if (this.options.operators?.not) {
         condition = !condition;
       }
 
       if (!condition) {
         throwError();
       }
-    } catch (error) {
+    } catch (error: unknown) {
 
       if (error instanceof ExitFunctionError) {
         if (operatorIsApplied) {
@@ -571,30 +589,29 @@ class AssertClass implements AssertType {
   }
 
 
-  private processNullOrOperator(value) {
-    if (this.opts.operators?.nullOr && TypeHelper.isUndefined(value)) {
+  private processNullOrOperator(value: unknown): void {
+    if (this.options.operators?.nullOr && TypeHelper.isUndefined(value)) {
       throw new ExitFunctionError();
     }
   }
 
   private processAllOperator(
-    array,
-    assertExpression: (v) => boolean,
+    array: unknown,
+    assertExpression: (v: unknown) => boolean,
     throwError: () => void,
-  ) {
-    if (!this.opts.operators?.all) {
+  ): void {
+    if (!this.options.operators?.all) {
       return;
     }
 
+    const assertInstance: AssertType = this.newInstance as unknown as AssertType;
+    assertInstance.array(array);
 
-    const Instance: AssertType = this.newInstance;
-    Instance.array(array);
-
-    array.forEach((value, index) => {
+    array.forEach((value: unknown, index) => {
       const condition = assertExpression(value);
 
       if (!condition) {
-        this.opts.message += ` (item #${index})`;
+        this.options.message += ` (item #${index})`;
         throwError();
       }
     });
@@ -604,16 +621,16 @@ class AssertClass implements AssertType {
 
 
 
-  private setMessage(messages: Pick<AssertOpts, 'message' | 'customMessage'>) {
+  private setMessage(messages: Pick<AssertOptions, 'message' | 'customMessage'>): void {
     const { message, customMessage = null } = messages;
-    this.opts = { ...this.opts, message, customMessage };
+    this.options = { ...this.options, message, customMessage };
   }
 
-  private setOperator(operator: Partial<AssertOperatorsConfig>) {
-    this.opts = {
-      ...this.opts,
+  private setOperator(operator: Partial<AssertOperatorsConfig>): void {
+    this.options = {
+      ...this.options,
       operators: {
-        ...(this.opts.operators ?? {}),
+        ...(this.options.operators ?? {}),
         ...operator,
       },
     };
@@ -621,8 +638,8 @@ class AssertClass implements AssertType {
 
 
 
-  private throwError(...params: any[]) {
-    let message = this.opts.customMessage ?? this.opts.message;
+  private throwError(...params: unknown[]): void {
+    let message = this.options.customMessage ?? this.options.message;
     if (!message) {
       throw new Error('assert message should be set');
     }
@@ -634,10 +651,9 @@ class AssertClass implements AssertType {
       },
     );
 
-    throw new WebUtilsAssertionError(message, !!this.opts.customMessage);
+    throw new WebUtilsAssertionError(message, !!this.options.customMessage);
   }
 }
 
 
-// @ts-ignore
-export const Assert: AssertType = new AssertClass();
+export const Assert: AssertType = new AssertClass() as unknown as AssertType;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {Assert} from './assert';
 import {WebUtilsAssertionError} from './classes/error/assertion.error';
 
@@ -60,6 +61,15 @@ describe('Assert: string', () => {
     expect(Assert.all.endsWith(['some a qwe', 'some b qwe', 'some a qwe'], ' qwe')).toBeUndefined();
     expect(() => Assert.endsWith('some string', 'qw')).toThrow(WebUtilsAssertionError);
     expect(() => Assert.not.endsWith('some string', 'ing')).toThrow(WebUtilsAssertionError);
+  });
+
+  it(Assert.oneOf.name, () => {
+    const array = ['one', 'two', 'three'];
+    expect(Assert.oneOf('two', array)).toBeUndefined();
+    expect(Assert.not.oneOf('four', array)).toBeUndefined();
+    expect(Assert.nullOr.oneOf(null, array)).toBeUndefined();
+    expect(() => Assert.oneOf('four', array)).toThrow(WebUtilsAssertionError);
+    expect(() => Assert.not.oneOf('two', array)).toThrow(WebUtilsAssertionError);
   });
 });
 
@@ -179,15 +189,6 @@ describe('Assert: array', () => {
     expect(() => Assert.array('some array')).toThrow(WebUtilsAssertionError);
   });
 
-  it(Assert.oneOf.name, () => {
-    const array = ['one', 'two', 'three'];
-    expect(Assert.oneOf('two', array)).toBeUndefined();
-    expect(Assert.not.oneOf('four', array)).toBeUndefined();
-    expect(Assert.nullOr.oneOf(null, array)).toBeUndefined();
-    expect(() => Assert.oneOf('four', array)).toThrow(WebUtilsAssertionError);
-    expect(() => Assert.not.oneOf('two', array)).toThrow(WebUtilsAssertionError);
-  });
-
   it(Assert.arrayLength.name, () => {
     const array = ['one', 'two', 'three'];
     expect(Assert.arrayLength(array, 3)).toBeUndefined();
@@ -250,10 +251,12 @@ describe('Assert: instance', () => {
 describe('Assert: regexp', () => {
 
   it(Assert.match.name, () => {
-    expect(Assert.match(123, /123/)).toBeUndefined();
+    expect(Assert.match('1234', /123/)).toBeUndefined();
     expect(Assert.nullOr.match(null, /some regexp/)).toBeUndefined();
     expect(Assert.not.match('some number', /^\d+$/)).toBeUndefined();
-    expect(Assert.all.match([123, '123'], /[13]/)).toBeUndefined();
+    expect(Assert.all.match(['1', '123'], /[13]/)).toBeUndefined();
+    expect(() => Assert.match(123, /123/)).toThrow(WebUtilsAssertionError);
+    expect(() => Assert.all.match([123, '123'], /[13]/)).toThrow(WebUtilsAssertionError);
     expect(() => Assert.match('some string', /regexp/)).toThrow(WebUtilsAssertionError);
   });
 });
