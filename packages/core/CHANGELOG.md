@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0 (2022-04-23)
+
+
+### Features
+
+* fix functions types, cleanup code ([ceaaf51](https://github.com/Shedevro/web-utils/commit/ceaaf51ce335a2a3b4f0a4dc013db10fadda53ec))
+
+
+
+
+
 ## 0.0.14 (2021-03-09)
 
 **Note:** Version bump only for package @shedevro/core
