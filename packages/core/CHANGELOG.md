@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.1 (2022-04-23)
+
+
+### Bug Fixes
+
+* **assert:** update `Assert.not.equal` return to type ([2a6f00f](https://github.com/Shedevro/web-utils/commit/2a6f00fcaafc1d6be5295d7f36dcb611ed37cde0))
+
+
+
+
+
 # 1.1.0 (2022-04-23)
 
 
