@@ -1,5 +1,6 @@
 namespace Types {
-  export type Default = unknown[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  export type Default = any[];
   export type Nullable = Default | null;
 
   export type Not = void;

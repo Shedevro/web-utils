@@ -1,5 +1,6 @@
 namespace Types {
-  export type One = (...args: any[]) => unknown;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  export type One = (...args: any[]) => any;
   export type OneNullable = One | null;
 
   export type Array = One[];

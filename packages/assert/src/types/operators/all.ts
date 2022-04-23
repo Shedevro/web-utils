@@ -1,12 +1,12 @@
-import {StringFunctions} from '../assert-functions/string';
-import {NumberFunctions} from '../assert-functions/number';
-import {BooleanFunctions} from '../assert-functions/boolean';
-import {ObjectFunctions} from '../assert-functions/object';
-import {FunctionFunctions} from '../assert-functions/function';
-import {ArrayFunctions} from '../assert-functions/array';
-import {InstanceFunctions} from '../assert-functions/instance';
-import {RegExpFunctions} from '../assert-functions/regexp';
-import {OtherFunctions} from '../assert-functions/other';
+import type {StringFunctions} from '../assert-functions/string';
+import type {NumberFunctions} from '../assert-functions/number';
+import type {BooleanFunctions} from '../assert-functions/boolean';
+import type {ObjectFunctions} from '../assert-functions/object';
+import type {FunctionFunctions} from '../assert-functions/function';
+import type {ArrayFunctions} from '../assert-functions/array';
+import type {InstanceFunctions} from '../assert-functions/instance';
+import type {RegExpFunctions} from '../assert-functions/regexp';
+import type {OtherFunctions} from '../assert-functions/other';
 
 
 
