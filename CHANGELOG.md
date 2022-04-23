@@ -8,17 +8,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* trigger deployment ([ae32159](https://github.com/Shedevro/web-utils/commit/ae321592a57f3c7bd5848c4b312dc685ba3b8fde))
-
-
-
-
-
-# 1.0.0 (2022-04-23)
-
-
-### Features
-
 * fix functions types, cleanup code ([ceaaf51](https://github.com/Shedevro/web-utils/commit/ceaaf51ce335a2a3b4f0a4dc013db10fadda53ec))
 
 

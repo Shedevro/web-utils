@@ -55,6 +55,14 @@ namespace Equal {
         message?: string,
       ): asserts value is TExpect;
     }
+
+    export type Not = {
+      equal<TValue, TExpect extends string | number | boolean>(
+        value: TValue,
+        expect: TExpect,
+        message?: string,
+      ): asserts value is Exclude<TValue, TExpect>;
+    }
   }
 
 
@@ -65,6 +73,13 @@ namespace Equal {
         value: unknown,
         expect: TExpect,
       ): value is TExpect;
+    }
+
+    export type Not = {
+      equal<TValue, TExpect extends string | number | boolean>(
+        value: TValue,
+        expect: TExpect,
+      ): value is Exclude<TValue, TExpect>;
     }
   }
 }
@@ -110,7 +125,7 @@ export namespace OtherFunctions {
 
     export type Not =
       Defined.Asserts.Not &
-      Equal.Asserts.One &
+      Equal.Asserts.Not &
       Throws.Asserts.One;
   }
 
@@ -133,7 +148,7 @@ export namespace OtherFunctions {
 
     export type Not =
       Defined.ValueIs.Not &
-      Equal.ValueIs.One &
+      Equal.ValueIs.Not &
       Throws.ValueIs.One;
   }
 }
