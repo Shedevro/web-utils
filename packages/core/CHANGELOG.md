@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2022-04-23)
+
+
+### Features
+
+* trigger deployment ([ae32159](https://github.com/Shedevro/web-utils/commit/ae321592a57f3c7bd5848c4b312dc685ba3b8fde))
+
+
+
+
+
 # 1.0.0 (2022-04-23)
 
 
