@@ -14,11 +14,11 @@ namespace Defined {
     }
 
     export type ArrayNullable = {
-      defined<T>(value: T[] | any, message?: string): asserts value is NonNullable<T[]> | null;
+      defined<T>(value: T[] | unknown, message?: string): asserts value is NonNullable<T[]> | null;
     }
 
     export type Not = {
-      defined(value, message?: string): asserts value is null | undefined;
+      defined(value: unknown, message?: string): asserts value is null | undefined;
     }
   }
 
@@ -34,11 +34,11 @@ namespace Defined {
     }
 
     export type ArrayNullable = {
-      defined<T>(value: T[] | any): value is NonNullable<T[]> | null;
+      defined<T>(value: T[] | unknown): value is NonNullable<T[]> | null;
     }
 
     export type Not = {
-      defined(value): value is null | undefined;
+      defined(value: unknown): value is null | undefined;
     }
   }
 }
@@ -49,7 +49,11 @@ namespace Equal {
   export namespace Asserts {
 
     export type One = {
-      equal(value, expect, message?: string): void;
+      equal<TExpect extends string | number | boolean>(
+        value: unknown,
+        expect: TExpect,
+        message?: string,
+      ): asserts value is TExpect;
     }
   }
 
@@ -57,7 +61,10 @@ namespace Equal {
   export namespace ValueIs {
 
     export type One = {
-      equal(value, expect): boolean;
+      equal<TExpect extends string | number | boolean>(
+        value: unknown,
+        expect: TExpect,
+      ): value is TExpect;
     }
   }
 }
@@ -68,7 +75,7 @@ namespace Throws {
   export namespace Asserts {
 
     export type One = {
-      throws(expression, expectedErrorClass?: InstanceClass, message?: string): void;
+      throws(expression: unknown, expectedErrorClass?: InstanceClass, message?: string): void;
     }
   }
 
@@ -76,7 +83,7 @@ namespace Throws {
   export namespace ValueIs {
 
     export type One = {
-      throws(expression, expectedErrorClass?: InstanceClass): boolean;
+      throws(expression: unknown, expectedErrorClass?: InstanceClass): boolean;
     }
   }
 }

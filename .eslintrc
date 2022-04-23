@@ -1,0 +1,145 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "overrides": [
+    {
+      "files": [
+        "packages/**/*.ts"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "project": "./tsconfig.json",
+        "createDefaultProgram": true
+      },
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/consistent-indexed-object-style": "error",
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/explicit-function-return-type": [
+          "error",
+          {
+            "allowExpressions": true
+          }
+        ],
+        "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/indent": ["error", 2],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          // variableLike, memberLike, method
+          {
+            "selector": ["variableLike", "memberLike", "method"],
+            "format": ["camelCase"]
+          },
+          // Object literals: { ['Some-Variable']: 'some value' }
+          {
+            "selector": "objectLiteralProperty",
+            "format": null
+          },
+          // Constants
+          {
+            "selector": "variable",
+            "modifiers": ["const"],
+            "format": [
+              "camelCase",
+              "PascalCase",
+              "UPPER_CASE"
+            ]
+          },
+          // Class properties
+          {
+            "selector": "classProperty",
+            "format": ["camelCase", "PascalCase", "UPPER_CASE"]
+          },
+          // Private class property can have leading underscore (for getter/setter support)
+          {
+            "selector": "classProperty",
+            "modifiers": ["private"],
+            "format": null,
+            "leadingUnderscore": "allow"
+          },
+          // Function parameters
+          {
+            "selector": "parameter",
+            "format": ["camelCase"],
+            "leadingUnderscore": "allow"
+          },
+          {
+            "selector": "parameter",
+            "modifiers": ["destructured"],
+            "format": ["camelCase", "snake_case"],
+            "leadingUnderscore": "allow"
+          },
+          // Type names
+          {
+            "selector": "typeLike",
+            "format": ["PascalCase"]
+          },
+          // Type properties
+          {
+            "selector": "typeProperty",
+            "format": ["camelCase", "PascalCase", "snake_case"],
+            "leadingUnderscore": "allow"
+          },
+          // Enums
+          {
+            "selector": "enumMember",
+            "format": ["camelCase", "PascalCase"]
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": [
+          "error",
+          {
+            "ignoreRestArgs": true
+          }
+        ],
+        "@typescript-eslint/no-extra-semi": "error",
+        "@typescript-eslint/no-implicit-any-catch": "error",
+        "@typescript-eslint/no-unnecessary-condition": "error",
+        "@typescript-eslint/prefer-nullish-coalescing": "error",
+        "@typescript-eslint/prefer-optional-chain": "error",
+        "@typescript-eslint/switch-exhaustiveness-check": "error",
+        "eol-last": ["error", "always"],
+        "eqeqeq": ["error", "always"], // typescript-eslint enabled
+        "key-spacing": "error",
+        "lines-between-class-members": [
+          "error",
+          "always",
+          {
+            "exceptAfterSingleLine": true
+          }
+        ],
+        "max-len": ["error", 140],
+        "no-unused-vars": "error",
+        "object-shorthand": ["error", "properties"], // typescript-eslint enabled
+        "padded-blocks": "off",
+        "prefer-const": "error",
+        "prefer-object-spread": "error",
+        "quotes": [
+          "error",
+          "single",
+          {
+            "avoidEscape": true
+          }
+        ],
+        "require-await": "error",
+        "require-jsdoc": "off"
+      }
+    }
+  ]
+}

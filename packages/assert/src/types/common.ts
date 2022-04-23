@@ -1,27 +1,33 @@
-import {AssertOperatorsConfig} from './config';
+import {ArrayFunctions} from './assert-functions/array';
+import {BooleanFunctions} from './assert-functions/boolean';
+import {FunctionFunctions} from './assert-functions/function';
+import {InstanceFunctions} from './assert-functions/instance';
+import {NumberFunctions} from './assert-functions/number';
+import {ObjectFunctions} from './assert-functions/object';
+import {OtherFunctions} from './assert-functions/other';
+import {RegExpFunctions} from './assert-functions/regexp';
 
+import {StringFunctions} from './assert-functions/string';
 import {AllOperatorAsserts} from './operators/all';
 import {IsOperator} from './operators/is';
 import {NotOperatorAsserts} from './operators/not';
 import {NullOrOperatorAsserts} from './operators/null-or';
 
-import {StringFunctions} from './assert-functions/string';
-import {NumberFunctions} from './assert-functions/number';
-import {BooleanFunctions} from './assert-functions/boolean';
-import {ObjectFunctions} from './assert-functions/object';
-import {FunctionFunctions} from './assert-functions/function';
-import {ArrayFunctions} from './assert-functions/array';
-import {InstanceFunctions} from './assert-functions/instance';
-import {RegExpFunctions} from './assert-functions/regexp';
-import {OtherFunctions} from './assert-functions/other';
 
 
 
-export type AssertOpts = Partial<{
+export type AssertOptions = Partial<{
   operators: Partial<AssertOperatorsConfig>,
   message: string,
   customMessage: string | null,
 }>
+
+export type AssertOperatorsConfig = {
+  all: boolean,
+  is: boolean,
+  not: boolean,
+  nullOr: boolean,
+};
 
 
 type DefaultAssertOperators =

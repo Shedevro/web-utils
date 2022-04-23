@@ -7,7 +7,7 @@ namespace InstanceOf {
 
     export type One = {
       instanceOf<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClass: T,
         message?: string,
       ): asserts value is InstanceType<T>;
@@ -15,7 +15,7 @@ namespace InstanceOf {
 
     export type OneNullable = {
       instanceOf<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClass: T,
         message?: string,
       ): asserts value is InstanceType<T> | null;
@@ -23,7 +23,7 @@ namespace InstanceOf {
 
     export type Array = {
       instanceOf<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClass: T,
         message?: string,
       ): asserts value is InstanceType<T>[];
@@ -31,7 +31,7 @@ namespace InstanceOf {
 
     export type ArrayNullable = {
       instanceOf<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClass: T,
         message?: string,
       ): asserts value is InstanceType<T>[] | null;
@@ -39,7 +39,7 @@ namespace InstanceOf {
 
     export type Not = {
       instanceOf<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClass: T,
         message?: string,
       ): void;
@@ -51,35 +51,35 @@ namespace InstanceOf {
 
     export type One = {
       instanceOf<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClass: T,
       ): value is InstanceType<T>;
     }
 
     export type OneNullable = {
       instanceOf<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClass: T,
       ): value is InstanceType<T> | null;
     }
 
     export type Array = {
       instanceOf<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClass: T,
       ): value is InstanceType<T>[];
     }
 
     export type ArrayNullable = {
       instanceOf<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClass: T,
       ): value is InstanceType<T>[] | null;
     }
 
     export type Not = {
       instanceOf<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClass: T,
       ): void;
     }
@@ -93,7 +93,7 @@ namespace InstanceOfAny {
 
     export type One = {
       instanceOfAny<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClasses: T[],
         message?: string,
       ): asserts value is T;
@@ -101,7 +101,7 @@ namespace InstanceOfAny {
 
     export type OneNullable = {
       instanceOfAny<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClasses: T[],
         message?: string,
       ): asserts value is T | null;
@@ -109,7 +109,7 @@ namespace InstanceOfAny {
 
     export type Array = {
       instanceOfAny<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClasses: T[],
         message?: string,
       ): asserts value is T[];
@@ -117,7 +117,7 @@ namespace InstanceOfAny {
 
     export type ArrayNullable = {
       instanceOfAny<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClasses: T[],
         message?: string,
       ): asserts value is T[] | null;
@@ -125,7 +125,7 @@ namespace InstanceOfAny {
 
     export type Not = {
       instanceOfAny<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClasses: T[],
         message?: string,
       ): boolean;
@@ -137,35 +137,35 @@ namespace InstanceOfAny {
 
     export type One = {
       instanceOfAny<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClasses: T[],
       ): value is T;
     }
 
     export type OneNullable = {
       instanceOfAny<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClasses: T[],
       ): value is T | null;
     }
 
     export type Array = {
       instanceOfAny<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClasses: T[],
       ): value is T[];
     }
 
     export type ArrayNullable = {
       instanceOfAny<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClasses: T[],
       ): value is T[] | null;
     }
 
     export type Not = {
       instanceOfAny<T extends InstanceClass>(
-        value,
+        value: unknown,
         instanceClasses: T[],
       ): boolean;
     }

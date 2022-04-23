@@ -10,11 +10,11 @@ namespace Types {
 namespace Number {
 
   export type AssertsTemplate<R> = {
-    number(value, message?: string): asserts value is R;
+    number(value: unknown, message?: string): asserts value is R;
   }
 
   export type ValueIsTemplate<R> = {
-    number(value): value is R;
+    number(value: unknown): value is R;
   }
 }
 
@@ -22,11 +22,11 @@ namespace Number {
 namespace Natural {
 
   export type AssertsTemplate<R> = {
-    natural(value, message?: string): asserts value is R;
+    natural(value: unknown, message?: string): asserts value is R;
   }
 
   export type ValueIsTemplate<R> = {
-    natural(value): value is R;
+    natural(value: unknown): value is R;
   }
 }
 
@@ -34,11 +34,11 @@ namespace Natural {
 namespace GreaterThan {
 
   export type AssertsTemplate<R> = {
-    greaterThan(value, limit: number, message?: string): asserts value is R;
+    greaterThan(value: unknown, limit: number, message?: string): asserts value is R;
   }
 
   export type ValueIsTemplate<R> = {
-    greaterThan(value, limit: number): value is R;
+    greaterThan(value: unknown, limit: number): value is R;
   }
 }
 
@@ -46,11 +46,11 @@ namespace GreaterThan {
 namespace GreaterThanOrEqual {
 
   export type AssertsTemplate<R> = {
-    greaterThanOrEqual(value, limit: number, message?: string): asserts value is R;
+    greaterThanOrEqual(value: unknown, limit: number, message?: string): asserts value is R;
   }
 
   export type ValueIsTemplate<R> = {
-    greaterThanOrEqual(value, limit: number): value is R;
+    greaterThanOrEqual(value: unknown, limit: number): value is R;
   }
 }
 
@@ -58,11 +58,11 @@ namespace GreaterThanOrEqual {
 namespace LessThan {
 
   export type AssertsTemplate<R> = {
-    lessThan(value, limit: number, message?: string): asserts value is R;
+    lessThan(value: unknown, limit: number, message?: string): asserts value is R;
   }
 
   export type ValueIsTemplate<R> = {
-    lessThan(value, limit: number): value is R;
+    lessThan(value: unknown, limit: number): value is R;
   }
 }
 
@@ -70,11 +70,11 @@ namespace LessThan {
 namespace LessThanOrEqual {
 
   export type AssertsTemplate<R> = {
-    lessThanOrEqual(value, limit: number, message?: string): asserts value is R;
+    lessThanOrEqual(value: unknown, limit: number, message?: string): asserts value is R;
   }
 
   export type ValueIsTemplate<R> = {
-    lessThanOrEqual(value, limit: number): value is R;
+    lessThanOrEqual(value: unknown, limit: number): value is R;
   }
 }
 
@@ -82,11 +82,11 @@ namespace LessThanOrEqual {
 namespace Range {
 
   export type AssertsTemplate<R> = {
-    range(value, min: number, max: number, message?: string): asserts value is R;
+    range(value: unknown, min: number, max: number, message?: string): asserts value is R;
   }
 
   export type ValueIsTemplate<R> = {
-    range(value, min: number, max: number): value is R;
+    range(value: unknown, min: number, max: number): value is R;
   }
 }
 

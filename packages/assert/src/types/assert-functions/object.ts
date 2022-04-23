@@ -10,11 +10,11 @@ namespace Types {
 namespace Object {
 
   export type AssertsTemplate<R> = {
-    object(value, message?: string): asserts value is R;
+    object(value: unknown, message?: string): asserts value is R;
   }
 
   export type ValueIsTemplate<R> = {
-    object(value): value is R;
+    object(value: unknown): value is R;
   }
 }
 
