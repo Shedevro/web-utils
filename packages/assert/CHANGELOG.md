@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.4 (2023-06-12)
+
+
+### Bug Fixes
+
+* add support for TS v5 ([1145e49](https://github.com/Shedevro/web-utils/commit/1145e49947858250607b93f5156f468f31980b47))
+
+
+
+
+
 ## 1.1.3 (2023-02-13)
 
 **Note:** Version bump only for package @shedevro/assert
