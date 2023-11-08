@@ -4,26 +4,30 @@
   "description": "Library with reactive things",
   "author": "Shedevro <worldschaos@gmail.com>",
   "homepage": "https://github.com/Shedevro/web-utils#readme",
-  "license": "ISC",
-  "main": "lib/reactive.js",
+  "license": "MIT",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "directories": {
     "lib": "dist"
   },
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Shedevro/web-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Shedevro/web-utils/issues"
   },
   "scripts": {
     "build": "tsc",
     "prebuild": "rimraf ./dist && npm run lint",
     "postbuild": "lerna bootstrap",
     "lint": "npx eslint"
-  },
-  "bugs": {
-    "url": "https://github.com/Shedevro/web-utils/issues"
   },
   "dependencies": {
     "@shedevro/assert": "^1.2.0",
