@@ -1,0 +1,39 @@
+{
+  "name": "@shedevro/reactive",
+  "version": "1.1.4",
+  "description": "Library with reactive things",
+  "author": "Shedevro <worldschaos@gmail.com>",
+  "homepage": "https://github.com/Shedevro/web-utils#readme",
+  "license": "ISC",
+  "main": "lib/reactive.js",
+  "directories": {
+    "lib": "dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shedevro/web-utils.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prebuild": "rimraf ./dist && npm run lint",
+    "postbuild": "lerna bootstrap",
+    "lint": "npx eslint"
+  },
+  "bugs": {
+    "url": "https://github.com/Shedevro/web-utils/issues"
+  },
+  "dependencies": {
+    "@shedevro/assert": "^1.1.4",
+    "lodash": "^4.17.21"
+  },
+  "peerDependencies": {
+    "rxjs": ">= 7.0.0",
+    "typescript": ">= 4.1.5 < 6.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.201"
+  }
+}
