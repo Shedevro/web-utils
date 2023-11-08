@@ -1,6 +1,6 @@
 {
   "name": "@shedevro/reactive",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Library with reactive things",
   "author": "Shedevro <worldschaos@gmail.com>",
   "homepage": "https://github.com/Shedevro/web-utils#readme",
@@ -30,7 +30,7 @@
     "lint": "npx eslint"
   },
   "dependencies": {
-    "@shedevro/assert": "^1.2.0",
+    "@shedevro/assert": "^1.2.1",
     "lodash": "^4.17.21"
   },
   "peerDependencies": {
