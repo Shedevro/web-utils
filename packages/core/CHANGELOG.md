@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.3 (2023-11-17)
+
+
+### Bug Fixes
+
+* **assert:** export AssertionHelper ([05e56d3](https://github.com/Shedevro/web-utils/commit/05e56d36ef4ff786b0fa7f5a4d50eeac16d08570))
+
+
+
+
+
 ## 1.2.2 (2023-11-17)
 
 
