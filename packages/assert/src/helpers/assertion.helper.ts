@@ -1,4 +1,5 @@
-import {TypeHelper} from '@shedevro/core';
+import { TypeHelper } from '@shedevro/core';
+
 
 export abstract class AssertionHelper {
 

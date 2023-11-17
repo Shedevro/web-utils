@@ -1,4 +1,4 @@
-import type {InstanceClass} from '@shedevro/core';
+import type { InstanceClass } from '@shedevro/core';
 
 
 namespace InstanceOf {

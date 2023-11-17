@@ -1,15 +1,15 @@
-import type {StringFunctions} from '../assert-functions/string';
-import type {NumberFunctions} from '../assert-functions/number';
-import type {BooleanFunctions} from '../assert-functions/boolean';
-import type {ObjectFunctions} from '../assert-functions/object';
-import type {FunctionFunctions} from '../assert-functions/function';
-import type {ArrayFunctions} from '../assert-functions/array';
-import type {InstanceFunctions} from '../assert-functions/instance';
-import type {RegExpFunctions} from '../assert-functions/regexp';
-import type {OtherFunctions} from '../assert-functions/other';
+import type { ArrayFunctions } from '../assert-functions/array';
+import type { BooleanFunctions } from '../assert-functions/boolean';
+import type { FunctionFunctions } from '../assert-functions/function';
+import type { InstanceFunctions } from '../assert-functions/instance';
+import type { NumberFunctions } from '../assert-functions/number';
+import type { ObjectFunctions } from '../assert-functions/object';
+import type { OtherFunctions } from '../assert-functions/other';
+import type { RegExpFunctions } from '../assert-functions/regexp';
+import type { StringFunctions } from '../assert-functions/string';
 
-import type {AllOperatorAssertsNullable, AllOperatorValueIsNullable} from './all';
-import type {NotOperatorAsserts, NotOperatorValueIs} from './not';
+import type { AllOperatorAssertsNullable, AllOperatorValueIsNullable } from './all';
+import type { NotOperatorAsserts, NotOperatorValueIs } from './not';
 
 
 type AssertsFunctions =

@@ -1,4 +1,4 @@
-import {WebUtilsAssertionError} from './assertion.error';
+import { WebUtilsAssertionError } from './assertion.error';
 
 
 describe('Assertion error test', () => {

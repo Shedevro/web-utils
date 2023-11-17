@@ -1,10 +1,10 @@
 /* eslint-disable prefer-rest-params */
-import type {InstanceClass} from '@shedevro/core';
-import {ExitFunctionError, TypeHelper} from '@shedevro/core';
-import {MessageBuilder} from './classes/assertion-message-builder';
-import {WebUtilsAssertionError} from './classes/error/assertion.error';
-import {AssertionHelper} from './helpers/assertion.helper';
-import type {AssertOperatorsConfig, AssertOptions, AssertType} from './types/common';
+import type { InstanceClass } from '@shedevro/core';
+import { ExitFunctionError, TypeHelper } from '@shedevro/core';
+import { MessageBuilder } from './classes/assertion-message-builder';
+import { WebUtilsAssertionError } from './classes/error/assertion.error';
+import { AssertionHelper } from './helpers/assertion.helper';
+import type { AssertOperatorsConfig, AssertOptions, AssertType } from './types/common';
 
 
 class AssertClass {

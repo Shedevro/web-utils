@@ -1,8 +1,8 @@
-import type {StringFunctions} from '../assert-functions/string';
-import type {NumberFunctions} from '../assert-functions/number';
-import type {InstanceFunctions} from '../assert-functions/instance';
-import type {RegExpFunctions} from '../assert-functions/regexp';
-import type {OtherFunctions} from '../assert-functions/other';
+import type { InstanceFunctions } from '../assert-functions/instance';
+import type { NumberFunctions } from '../assert-functions/number';
+import type { OtherFunctions } from '../assert-functions/other';
+import type { RegExpFunctions } from '../assert-functions/regexp';
+import type { StringFunctions } from '../assert-functions/string';
 
 
 

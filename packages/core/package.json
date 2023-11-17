@@ -5,9 +5,18 @@
   "author": "Shedevro <worldschaos@gmail.com>",
   "homepage": "https://github.com/Shedevro/web-utils/tree/master/packages/core#readme",
   "license": "MIT",
-  "main": "src/",
-  "module": "dist/index.js",
+  "type": "module",
+  "main": "dist/index.cjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "directories": {
     "lib": "dist"
   },
@@ -25,7 +34,7 @@
     "url": "https://github.com/Shedevro/web-utils/issues"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rollup -c",
     "prebuild": "rimraf ./dist && npm run lint",
     "postbuild": "lerna bootstrap",
     "lint": "npx eslint"

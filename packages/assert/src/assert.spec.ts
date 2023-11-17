@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import {Assert} from './assert';
-import {WebUtilsAssertionError} from './classes/error/assertion.error';
+import { Assert } from './assert';
+import { WebUtilsAssertionError } from './classes/error/assertion.error';
 
 
 describe('Assert: string', () => {

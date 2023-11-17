@@ -1,4 +1,4 @@
-import {InstanceClass} from '@shedevro/core';
+import { InstanceClass } from '@shedevro/core';
 
 
 namespace Defined {
