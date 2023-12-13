@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.4 (2023-12-13)
+
+
+### Bug Fixes
+
+* **reactive:** use lodash-es instead of lodash ([8b497bb](https://github.com/Shedevro/web-utils/commit/8b497bbec35de76b146199adbf59adf086568897))
+
+
+
+
+
 ## 1.2.3 (2023-11-17)
 
 
