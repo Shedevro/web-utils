@@ -35,19 +35,19 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "prebuild": "rimraf ./dist && npm run lint",
+    "prebuild": "rimraf ./dist",
     "postbuild": "lerna bootstrap",
     "lint": "npx eslint"
   },
   "dependencies": {
     "@shedevro/assert": "^1.2.3",
-    "lodash": "^4.17.21"
+    "lodash-es": "^4.17.21"
   },
   "peerDependencies": {
     "rxjs": ">= 7.0.0",
     "typescript": ">= 4.1.5 < 6.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.201"
+    "@types/lodash-es": "^4.17.12"
   }
 }

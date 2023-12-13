@@ -53,7 +53,7 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "prebuild": "rimraf ./dist && npm run lint",
+    "prebuild": "rimraf ./dist",
     "postbuild": "lerna bootstrap",
     "lint": "npx eslint"
   },
