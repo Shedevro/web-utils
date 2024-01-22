@@ -1,10 +1,10 @@
-/* eslint-disable prefer-rest-params */
+/* eslint-disable prefer-rest-params,prefer-object-spread */
 import type { InstanceClass } from '@shedevro/core';
 import { ExitFunctionError, TypeHelper } from '@shedevro/core';
 import { MessageBuilder } from './classes/assertion-message-builder';
 import { WebUtilsAssertionError } from './classes/error/assertion.error';
 import { AssertionHelper } from './helpers/assertion.helper';
-import type { AssertOperatorsConfig, AssertOptions, AssertType } from './types/common';
+import type { AssertOptions, AssertType } from './types/common';
 
 
 class AssertClass {
@@ -21,29 +21,33 @@ class AssertClass {
 
   /** all operator */
   get all(): AssertClass {
-    const instance = new AssertClass(this.options);
-    instance.setOperator({ all: true });
+    const instance = new AssertClass(Object.assign({}, this.options));
+    instance.options.allOperator = true;
+
     return instance;
   }
 
   /** is operator */
   get is(): AssertClass {
-    const instance = new AssertClass(this.options);
-    instance.setOperator({ is: true });
+    const instance = new AssertClass(Object.assign({}, this.options));
+    instance.options.isOperator = true;
+
     return instance;
   }
 
   /** not operator */
   get not(): AssertClass {
-    const instance = new AssertClass(this.options);
-    instance.setOperator({ not: true });
+    const instance = new AssertClass(Object.assign({}, this.options));
+    instance.options.notOperator = true;
+
     return instance;
   }
 
   /** nullOr operator */
   get nullOr(): AssertClass {
-    const instance = new AssertClass(this.options);
-    instance.setOperator({ nullOr: true });
+    const instance = new AssertClass(Object.assign({}, this.options));
+    instance.options.nullOrOperator = true;
+
     return instance;
   }
 
@@ -66,12 +70,12 @@ class AssertClass {
   }
 
   emptyString(value: unknown, customMessage?: string): void | boolean {
-    const prefix = this.options.operators?.not ? 'non-empty' : 'empty';
+    const prefix = this.options.notOperator ? 'non-empty' : 'empty';
     const message = MessageBuilder.expectedToBe(`${prefix} string`, '{1}');
     this.setMessage({ message, customMessage });
 
     const expression = (v: unknown): boolean => {
-      if (this.options.operators?.not) {
+      if (this.options.notOperator) {
         return !TypeHelper.isString(v) || !v.trim(); // reversed for 'not' operator
       } else {
         return TypeHelper.isString(v) && !v.trim();
@@ -86,7 +90,7 @@ class AssertClass {
   }
 
   contains(value: unknown, subString: string, customMessage?: string): void | boolean {
-    const prefix = this.options.operators?.not ? 'not to' : 'to';
+    const prefix = this.options.notOperator ? 'not to' : 'to';
     const message = MessageBuilder.expectedValue(`${prefix} contain {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
@@ -101,7 +105,7 @@ class AssertClass {
   }
 
   startsWith(value: unknown, prefix: string, customMessage?: string): void | boolean {
-    const msgPrefix = this.options.operators?.not ? 'not' : '';
+    const msgPrefix = this.options.notOperator ? 'not' : '';
     const message = MessageBuilder.expectedValue(`${msgPrefix} to start with {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
@@ -115,7 +119,7 @@ class AssertClass {
   }
 
   endsWith(value: unknown, suffix: string, customMessage?: string): void | boolean {
-    const prefix = this.options.operators?.not ? 'not' : '';
+    const prefix = this.options.notOperator ? 'not' : '';
     const message = MessageBuilder.expectedValue(`${prefix} to end with {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
@@ -131,7 +135,7 @@ class AssertClass {
   oneOf(value: unknown, values: string[], customMessage?: string): void | boolean {
     this.newInstance.array(values, 'Assert.oneOf:values should be an array. Got: {1}');
 
-    const prefix = this.options.operators?.not ? ' not' : '';
+    const prefix = this.options.notOperator ? ' not' : '';
     const message = MessageBuilder.expectedToBe(`${prefix} one of {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
@@ -220,7 +224,7 @@ class AssertClass {
   }
 
   range(value: unknown, min: number, max: number, customMessage?: string): void | boolean {
-    const prefix = this.options.operators?.not ? 'not' : '';
+    const prefix = this.options.notOperator ? 'not' : '';
     const message = MessageBuilder.expectedToBe(`${prefix} between {2} and {3}`, '{1}');
     this.setMessage({ message, customMessage });
 
@@ -393,7 +397,7 @@ class AssertClass {
     instanceClass: T,
     customMessage?: string,
   ): void | boolean {
-    const prefix = this.options.operators?.not ? 'not' : '';
+    const prefix = this.options.notOperator ? 'not' : '';
     const message = MessageBuilder.expectedToBe(`${prefix} an instance of {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
@@ -415,7 +419,7 @@ class AssertClass {
     assertInstance.array(instanceClasses, 'Assert.instanceOfAny:instanceClasses should be an array. Got: {1}');
 
 
-    const prefix = this.options.operators?.not ? 'not' : '';
+    const prefix = this.options.notOperator ? 'not' : '';
     const message = MessageBuilder.expectedToBe(`${prefix} an instance of {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
@@ -433,7 +437,7 @@ class AssertClass {
    * RegExp
    */
   match(value: unknown, regExp: RegExp, customMessage?: string): void | boolean {
-    const prefix = this.options.operators?.not ? 'not' : '';
+    const prefix = this.options.notOperator ? 'not' : '';
     const message = MessageBuilder.expectedValue(`${prefix} to match {2}`, '{1}');
     this.setMessage({ message, customMessage });
 
@@ -451,7 +455,7 @@ class AssertClass {
    * Other
    */
   defined<T>(value: T, customMessage?: string): void | boolean {
-    const prefix = this.options.operators?.not ? 'undefined' : 'defined';
+    const prefix = this.options.notOperator ? 'undefined' : 'defined';
     const message = MessageBuilder.expectedToBe(prefix, '{1}');
     this.setMessage({ message, customMessage });
 
@@ -465,7 +469,7 @@ class AssertClass {
   }
 
   equal<TExpect>(value: unknown, expect: TExpect, customMessage?: string): void | boolean {
-    const message = this.options.operators?.not
+    const message = this.options.notOperator
       ? MessageBuilder.expectedValue('not equal to {2}')
       : MessageBuilder.expected('{1} to equal {2}');
     this.setMessage({ message, customMessage });
@@ -481,7 +485,7 @@ class AssertClass {
   }
 
   throws(expression: unknown, expectedErrorClass?: InstanceClass, customMessage?: string): void | boolean {
-    const operatorIsApplied = this.options.operators?.is ?? false;
+    const operatorIsApplied = this.options.isOperator ?? false;
     let throwedError: WebUtilsAssertionError | { message?: string } | undefined;
     let expressionResult: unknown;
 
@@ -498,7 +502,7 @@ class AssertClass {
     if (throwedError) {
       let isRightInstance = !expectedErrorClass || throwedError instanceof expectedErrorClass;
 
-      if (this.options.operators?.not) {
+      if (this.options.notOperator) {
         isRightInstance = !isRightInstance;
       }
 
@@ -514,7 +518,7 @@ class AssertClass {
         expressionResult += `: ${throwedError.message}`;
       }
     } else {
-      if (this.options.operators?.not) {
+      if (this.options.notOperator) {
         if (operatorIsApplied) {
           return true;
         }
@@ -528,7 +532,7 @@ class AssertClass {
 
     const message = (() => {
       const expectedErrorStr = expectedErrorClass ? '{2}' : 'error';
-      const prefix = this.options.operators?.not ? 'not' : '';
+      const prefix = this.options.notOperator ? 'not' : '';
       return MessageBuilder.expected(`${prefix} to throw ${expectedErrorStr}`, '{1}');
     })();
 
@@ -544,18 +548,23 @@ class AssertClass {
     throwError: () => void,
   ): void | boolean {
 
-    const operatorIsApplied = this.options.operators?.is ?? false;
+    const operatorIsApplied = this.options.isOperator ?? false;
 
 
     try {
+      // Process nullOr operator
+      if (this.options.nullOrOperator && TypeHelper.isUndefined(value)) {
+        return operatorIsApplied
+          ? true
+          : void 0;
+      }
 
-      this.processNullOrOperator(value);
       this.processAllOperator(value, assertExpression, throwError);
 
 
       let condition = assertExpression(value);
 
-      if (this.options.operators?.not) {
+      if (this.options.notOperator) {
         condition = !condition;
       }
 
@@ -589,18 +598,12 @@ class AssertClass {
   }
 
 
-  private processNullOrOperator(value: unknown): void {
-    if (this.options.operators?.nullOr && TypeHelper.isUndefined(value)) {
-      throw new ExitFunctionError();
-    }
-  }
-
   private processAllOperator(
     array: unknown,
     assertExpression: (v: unknown) => boolean,
     throwError: () => void,
   ): void {
-    if (!this.options.operators?.all) {
+    if (!this.options.allOperator) {
       return;
     }
 
@@ -623,17 +626,9 @@ class AssertClass {
 
   private setMessage(messages: Pick<AssertOptions, 'message' | 'customMessage'>): void {
     const { message, customMessage = null } = messages;
-    this.options = { ...this.options, message, customMessage };
-  }
 
-  private setOperator(operator: Partial<AssertOperatorsConfig>): void {
-    this.options = {
-      ...this.options,
-      operators: {
-        ...(this.options.operators ?? {}),
-        ...operator,
-      },
-    };
+    this.options.message = message;
+    this.options.customMessage = customMessage;
   }
 
 

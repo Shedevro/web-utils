@@ -29,7 +29,7 @@ export abstract class TypeHelper {
   }
 
   static isUndefined(value: unknown): value is null | undefined {
-    return value === null || value === undefined || Number.isNaN(value);
+    return value === undefined || value === null || Number.isNaN(value);
   }
 
   static typeOf(value: unknown): 'undefined' | 'array' | 'object' | 'boolean' | 'number' | 'string' | 'function' | 'symbol' | 'bigint' {

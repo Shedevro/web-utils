@@ -15,18 +15,14 @@ import type { NullOrOperatorAsserts } from './operators/null-or';
 
 
 
-export type AssertOptions = Partial<{
-  operators: Partial<AssertOperatorsConfig>,
-  message: string,
-  customMessage: string | null,
-}>
-
-export type AssertOperatorsConfig = {
-  all: boolean,
-  is: boolean,
-  not: boolean,
-  nullOr: boolean,
-};
+export type AssertOptions = {
+  allOperator?: boolean;
+  isOperator?: boolean;
+  notOperator?: boolean;
+  nullOrOperator?: boolean;
+  message?: string;
+  customMessage?: string | null;
+}
 
 
 type DefaultAssertOperators =
