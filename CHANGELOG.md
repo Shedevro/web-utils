@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.5 (2024-01-22)
+
+
+### Performance Improvements
+
+* **asset:** remove unneeded object spreading ([3187750](https://github.com/Shedevro/web-utils/commit/31877502500e3d68669c4f86d38ba264c8557285))
+
+
+
+
+
 ## 1.2.4 (2023-12-13)
 
 
