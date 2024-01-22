@@ -6,8 +6,8 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "module": "es2020",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
@@ -16,7 +16,7 @@
     "skipDefaultLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ES2020",
+    "target": "ESNext",
     "types": [
       "node",
       "jest"
