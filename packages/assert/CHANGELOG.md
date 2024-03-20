@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.3.0 (2024-03-20)
+
+
+### Features
+
+* **core:** add EnhancedMap and EnhancedSet ([6ce8975](https://github.com/Shedevro/web-utils/commit/6ce89751d48b984eaba2d48ac04db69598ee35bd))
+
+
+
+
+
 ## 1.2.5 (2024-01-22)
 
 
