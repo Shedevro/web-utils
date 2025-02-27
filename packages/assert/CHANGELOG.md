@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.4.0 (2025-02-27)
+
+
+### Features
+
+* replace lodash-es with es-toolkit, update deps, use node 22 ([e410b1a](https://github.com/Shedevro/web-utils/commit/e410b1ac52ef05891292274c7bd2ea31338b33bc))
+
+
+
+
+
 # 1.3.0 (2024-03-20)
 
 
