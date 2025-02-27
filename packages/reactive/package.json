@@ -41,14 +41,10 @@
     "lint": "npx eslint"
   },
   "dependencies": {
-    "@shedevro/assert": "^1.3.0",
-    "lodash-es": "^4.17.21"
+    "@shedevro/assert": "1.3.0",
+    "es-toolkit": "^1.32.0"
   },
   "peerDependencies": {
-    "rxjs": ">= 7.0.0",
-    "typescript": ">= 4.1.5 < 6.0"
-  },
-  "devDependencies": {
-    "@types/lodash-es": "^4.17.12"
+    "rxjs": ">= 7.0.0"
   }
 }

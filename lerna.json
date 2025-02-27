@@ -14,7 +14,8 @@
     },
     "version": {
       "message": "chore: new version %s",
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "exact": true
     },
     "publish": {
       "allowBranch": "master",

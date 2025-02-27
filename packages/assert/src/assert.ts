@@ -326,7 +326,7 @@ class AssertClass {
     const message = MessageBuilder.expectedToBe('an array', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = (v: unknown): boolean => TypeHelper.isArray(v);
+    const expression = (v: unknown): boolean => Array.isArray(v);
 
     return this.processAssertion(
       value,
@@ -339,7 +339,7 @@ class AssertClass {
     const message = MessageBuilder.expected('array length to be {2}', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = (v: unknown): boolean => TypeHelper.isArray(v) && v.length === expectedLength;
+    const expression = (v: unknown): boolean => Array.isArray(v) && v.length === expectedLength;
 
     return this.processAssertion(
       value,
@@ -352,7 +352,7 @@ class AssertClass {
     const message = MessageBuilder.expected('array min length to be {2}', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = (v: unknown): boolean => TypeHelper.isArray(v) && v.length >= minLimit;
+    const expression = (v: unknown): boolean => Array.isArray(v) && v.length >= minLimit;
 
     return this.processAssertion(
       value,
@@ -365,7 +365,7 @@ class AssertClass {
     const message = MessageBuilder.expected('array max length to be {2}', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = (v: unknown): boolean => TypeHelper.isArray(v) && v.length <= maxLimit;
+    const expression = (v: unknown): boolean => Array.isArray(v) && v.length <= maxLimit;
 
     return this.processAssertion(
       value,
@@ -378,7 +378,7 @@ class AssertClass {
     const message = MessageBuilder.expected('array length to be between {2} and {3}', '{1}');
     this.setMessage({ message, customMessage });
 
-    const expression = (v: unknown): boolean => TypeHelper.isArray(v) && v.length >= min && v.length <= max;
+    const expression = (v: unknown): boolean => Array.isArray(v) && v.length >= min && v.length <= max;
 
     return this.processAssertion(
       value,
