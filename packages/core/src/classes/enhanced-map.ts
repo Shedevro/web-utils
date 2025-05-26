@@ -1,6 +1,11 @@
 type EntriesType<K, V> = readonly (readonly [K, V])[];
 
-export class EnhancedMap<TKey, TValue> extends Map<TKey, TValue> {
+export type ReadonlyEnhancedMap<TKey, TValue> = ReadonlyMap<TKey, TValue> & {
+  getValues(): TValue[];
+  getByKeys(keys: TKey[]): TValue[];
+};
+
+export class EnhancedMap<TKey, TValue> extends Map<TKey, TValue> implements ReadonlyEnhancedMap<TKey, TValue> {
 
   constructor(
     entries?: EntriesType<TKey, TValue> | null,

@@ -1,4 +1,8 @@
-export class EnhancedSet<TValue> extends Set<TValue> {
+export type ReadonlyEnhancedSet<TValue> = ReadonlySet<TValue> & {
+  getValues(): TValue[];
+};
+
+export class EnhancedSet<TValue> extends Set<TValue> implements ReadonlyEnhancedSet<TValue> {
 
   getValues(): TValue[] {
     return Array.from(this.values());
