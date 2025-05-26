@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@shedevro/assert": "1.4.0",
-    "es-toolkit": "^1.32.0"
+    "es-toolkit": "^1.38.0"
   },
   "peerDependencies": {
     "rxjs": ">= 7.0.0"
