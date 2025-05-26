@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.4.1 (2025-05-26)
+
+
+### Bug Fixes
+
+* trigger release ([a19dd6d](https://github.com/Shedevro/web-utils/commit/a19dd6d0c6eac2be28ca8c206da12fa7f8cca6c1))
+
+
+
+
+
 # 1.4.0 (2025-02-27)
 
 
